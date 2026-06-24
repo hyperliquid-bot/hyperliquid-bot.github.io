@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyperliquid Bot Fees: What You Actually Pay (2026) | Hyperliquid Bot</title>
+<meta name="description" content="Hyperliquid bot fees explained qualitatively: exchange trading fees, perp funding, and any clear third-party bot tool fee before you automate.">
+<link rel="canonical" href="https://hyperliquid-bot.github.io/hyperliquid-bot-fees/">
+<meta name="theme-color" content="#060b0a">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hyperliquid Bot Fees: What You Actually Pay (2026)">
+<meta property="og:description" content="Exchange trading fees, perp funding, and any clear third-party bot tool fee are the real cost stack behind Hyperliquid automation.">
+<meta property="og:image" content="https://hyperliquid-bot.github.io/og-cover.png">
+<meta property="og:url" content="https://hyperliquid-bot.github.io/hyperliquid-bot-fees/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[
+ {"@type":"WebSite","@id":"https://hyperliquid-bot.github.io/#website","url":"https://hyperliquid-bot.github.io/","name":"Hyperliquid Bot"},
+ {"@type":"WebPage","@id":"https://hyperliquid-bot.github.io/hyperliquid-bot-fees/#webpage","url":"https://hyperliquid-bot.github.io/hyperliquid-bot-fees/","name":"Hyperliquid Bot Fees","isPartOf":{"@id":"https://hyperliquid-bot.github.io/#website"},"primaryImageOfPage":"https://hyperliquid-bot.github.io/og-cover.png","dateModified":"2026-06-19"},
+ {"@type":"BreadcrumbList","@id":"https://hyperliquid-bot.github.io/hyperliquid-bot-fees/#crumb","itemListElement":[
+   {"@type":"ListItem","position":1,"name":"Home","item":"https://hyperliquid-bot.github.io/"},
+   {"@type":"ListItem","position":2,"name":"Hyperliquid Bot Fees","item":"https://hyperliquid-bot.github.io/hyperliquid-bot-fees/"}]},
+ {"@type":"Organization","@id":"https://hyperliquid-bot.github.io/#org","name":"Hyperliquid Bot","url":"https://hyperliquid-bot.github.io/","logo":"https://hyperliquid-bot.github.io/favicon.svg","sameAs":["https://x.com/INSERT_HANDLE","https://t.me/INSERT_HANDLE"]},
+ {"@type":"FAQPage","@id":"https://hyperliquid-bot.github.io/hyperliquid-bot-fees/#faq","mainEntity":[
+   {"@type":"Question","name":"Are Hyperliquid bots free?","acceptedAnswer":{"@type":"Answer","text":"No. Exchange trading fees and perp funding always apply when a bot trades on Hyperliquid, and some third-party bot tools also charge their own fee."}},
+   {"@type":"Question","name":"What is funding?","acceptedAnswer":{"@type":"Answer","text":"Funding is a periodic payment between longs and shorts on perpetual futures. It can be paid or received depending on the market and your position."}},
+   {"@type":"Question","name":"Does Hyperliquid Bot take a cut of profits?","acceptedAnswer":{"@type":"Answer","text":"Its cost is shown up front; check it before you commit. This page does not make a profit-share claim."}},
+   {"@type":"Question","name":"What's the cheapest way to run a bot?","acceptedAnswer":{"@type":"Answer","text":"Qualitatively, the cheapest approach is usually maker orders and an efficient strategy that avoids unnecessary churn, while still respecting risk."}}
+ ]}
+]}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="grid" aria-hidden="true"></div>
+<a class="skip" href="#read">Skip to content</a>
+
+<header class="bar">
+  <a class="brand" href="../index.html" aria-label="Hyperliquid Bot - home">
+    <img src="../favicon.svg" alt="" width="30" height="30">
+    <span>Hyperliquid&nbsp;Bot</span>
+  </a>
+  <nav class="nav" aria-label="Guides">
+    <a href="../how-hyperliquid-ai-bots-work/index.html">How it works</a>
+    <a href="../hyperliquid-bot-fees/index.html" aria-current="page">Fees</a>
+    <a href="../is-a-hyperliquid-bot-safe/index.html">Safety</a>
+  </nav>
+  <a class="btn btn-cta" href="https://avalanche-ecosystem.github.io/">Open Bot <span class="ar" aria-hidden="true">-&gt;</span></a>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="hero-copy">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><i>&rsaquo;</i><span>Hyperliquid bot fees</span></nav>
+      <h1>Hyperliquid Bot Fees</h1>
+      <p class="lead">Running a Hyperliquid bot means exchange trading fees, perp funding, and any third-party bot fee — here's the breakdown.</p>
+      <div class="hero-actions">
+        <a class="btn btn-cta btn-xl" href="https://avalanche-ecosystem.github.io/">Open Bot <span class="ar" aria-hidden="true">-&gt;</span></a>
+        <a class="btn btn-ghost btn-lg" href="#read">Read the guide</a>
+      </div>
+      <p class="hero-note"><b>Third-party tool</b> &middot; fees shown up front &middot; not affiliated with Hyperliquid</p>
+    </div>
+
+    <section class="app" aria-label="Hyperliquid Bot preview">
+      <div class="app-head">
+        <span class="app-pair"><span class="tk">H</span>BTC-PERP</span>
+        <span class="app-status"><span class="dot"></span> Active &middot; 24/7</span>
+      </div>
+      <div class="app-spark" role="presentation"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="app-rows">
+        <div class="app-row"><span>Mode</span><b>AI &middot; Auto</b></div>
+        <div class="app-row"><span>Strategy</span><span class="pill">trend + funding</span></div>
+        <div class="app-row"><span>Runs</span><b class="mono">24 / 7</b></div>
+      </div>
+      <a class="btn btn-cta btn-block btn-lg" href="https://avalanche-ecosystem.github.io/">Open Bot <span class="ar" aria-hidden="true">-&gt;</span></a>
+      <p class="app-foot">Illustrative preview - your strategy runs in the app</p>
+    </section>
+  </section>
+
+  <div class="doc" id="read">
+    <div class="tldr">
+      <span class="lbl">Quick answer</span>
+      <p>A Hyperliquid bot's cost is mainly Hyperliquid's own trading fees plus perp funding, and any fee the bot tool itself charges. Hyperliquid's live fee schedule is in its docs — check it rather than trusting a number, and avoid bots that hide costs. <strong>Hyperliquid Bot</strong> shows what you're trading before you commit.</p>
+    </div>
+
+    <div class="prose">
+      <section data-reveal>
+        <h2>What do you pay to run a Hyperliquid bot?</h2>
+        <p class="cap">You pay the exchange costs created by your trades, plus any transparent fee charged by the bot tool you choose.</p>
+        <p>The important point is not a stale percentage copied from a blog. Hyperliquid publishes live documentation for trading costs and funding mechanics, so use those docs as the source of truth before a bot starts placing orders. A bot can make trading more disciplined, but it does not make exchange costs disappear.</p>
+        <div class="box">
+          <h3>Cost components</h3>
+          <ul>
+            <li>Hyperliquid trading fees: check the live <a href="https://hyperliquid.gitbook.io/hyperliquid-docs/trading/fees" rel="noopener noreferrer">Hyperliquid fee schedule</a> instead of trusting a copied number.</li>
+            <li>Perp funding: understand <a href="https://hyperliquid.gitbook.io/hyperliquid-docs/trading/funding" rel="noopener noreferrer">perp funding</a>, because it can affect leveraged positions while they stay open.</li>
+            <li>Any bot tool fee: third-party automation may have its own charge, and that charge should be visible before you trade.</li>
+          </ul>
+        </div>
+        <p>These costs matter more when a strategy trades often, uses leverage, or holds perpetual positions through multiple funding intervals. Treat fees as part of strategy design, not as an afterthought.</p>
+      </section>
+
+      <section data-reveal>
+        <h2>Do Hyperliquid bots charge a fee?</h2>
+        <p class="cap">It varies by tool, so prefer a bot that explains its cost clearly before you connect capital or commit to a strategy.</p>
+        <p>Some third-party bots charge a software fee, some bundle access into a subscription, and some may structure costs around usage. The risky pattern is not that a bot charges; it is that the charge is hidden, vague, or only appears after you are already trading.</p>
+        <p>Be especially cautious with percentage-style claims that are not explained in plain language. A transparent bot should make it easy to separate exchange costs from tool costs, and it should not rely on a hidden spread to make the trade look cleaner than it is.</p>
+      </section>
+
+      <section data-reveal>
+        <h2>How to keep your costs low</h2>
+        <p class="cap">Keep costs low by reducing unnecessary churn, choosing order behavior deliberately, and matching the strategy to the market.</p>
+        <div class="box">
+          <h3>Cost controls</h3>
+          <ul>
+            <li>Favor maker orders when the strategy can wait, because passive execution can be cheaper than crossing the book.</li>
+            <li>Size sensibly so one position does not force rushed exits, excessive leverage, or repeated corrections.</li>
+            <li>Pick the right strategy for the market instead of running a high-turnover setup in conditions where it keeps fighting noise.</li>
+          </ul>
+        </div>
+        <p>Automation is useful because it follows rules consistently. That same consistency can become expensive if the rules overtrade, chase every move, or hold a perp position without accounting for funding and liquidation risk.</p>
+      </section>
+
+      <section data-reveal>
+        <h2>Does Hyperliquid Bot add a big fee?</h2>
+        <p class="cap">Hyperliquid Bot keeps the cost stack clear: exchange trading fees, perp funding, and a visible tool fee shown before you commit.</p>
+        <p>There is no hidden spread presented as "free" automation. You should be able to understand what the strategy is trading, what exchange costs may apply, and what the tool charges before the bot starts. For the product view, <a href="../index.html">see it on Hyperliquid Bot</a>.</p>
+        <p>That clarity matters because perps are leveraged products. A bot that hides costs makes it harder to evaluate whether the strategy is genuinely efficient after fees, funding, and market risk are all considered.</p>
+      </section>
+
+      <section class="related" aria-label="Related guides" data-reveal>
+        <a class="rel-card" href="../how-hyperliquid-ai-bots-work/index.html"><b>How Hyperliquid AI bots work -&gt;</b><span>How automated strategies connect, trade, and stay under your control.</span></a>
+        <a class="rel-card" href="../best-hyperliquid-bots/index.html"><b>Best Hyperliquid bots -&gt;</b><span>What to compare before choosing a third-party bot.</span></a>
+        <a class="rel-card" href="../hyperliquid-bot-strategies/index.html"><b>Hyperliquid bot strategies -&gt;</b><span>How strategy choice affects turnover, funding, and risk.</span></a>
+      </section>
+
+      <section data-reveal>
+        <h2>Frequently asked questions</h2>
+        <div class="faq">
+          <details class="qa">
+            <summary><h3>Are Hyperliquid bots free?</h3><span class="chev" aria-hidden="true"></span></summary>
+            <div class="qa-body"><p>No. Exchange trading fees and perp funding always apply when a bot trades on Hyperliquid, and some third-party bot tools also charge their own fee.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>What is funding?</h3><span class="chev" aria-hidden="true"></span></summary>
+            <div class="qa-body"><p>Funding is a periodic payment between longs and shorts on perpetual futures. It can be paid or received depending on the market and your position.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>Does Hyperliquid Bot take a cut of profits?</h3><span class="chev" aria-hidden="true"></span></summary>
+            <div class="qa-body"><p>Its cost is shown up front; check it before you commit. This page does not make a profit-share claim.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>What's the cheapest way to run a bot?</h3><span class="chev" aria-hidden="true"></span></summary>
+            <div class="qa-body"><p>Qualitatively, the cheapest approach is usually maker orders and an efficient strategy that avoids unnecessary churn, while still respecting risk.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="cta-band" data-reveal>
+    <div class="cta-inner">
+      <h2>Automate Hyperliquid, keep costs clear</h2>
+      <p>Connect with an API wallet, choose a strategy, and review the visible costs before your bot trades.</p>
+      <a class="btn btn-cta btn-lg" href="https://avalanche-ecosystem.github.io/">Open Bot <span class="ar" aria-hidden="true">-&gt;</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-row">
+    <a class="brand" href="../index.html"><img src="../favicon.svg" alt="" width="28" height="28"><span>Hyperliquid Bot</span></a>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="../index.html">Home</a>
+      <a href="../how-to-connect-a-bot-to-hyperliquid/index.html">Connect</a>
+      <a href="../hyperliquid-bot-fees/index.html">Fees</a>
+      <a href="../is-a-hyperliquid-bot-safe/index.html">Safety</a>
+      <a href="https://avalanche-ecosystem.github.io/">Open Bot</a>
+    </nav>
+  </div>
+  <p class="disclaimer">Information on this page is for educational purposes only and is not financial advice. Trading perpetuals carries significant risk, including liquidation and the loss of capital. Hyperliquid Bot is an independent automated-trading tool and is not affiliated with Hyperliquid.</p>
+  <p class="copy">&copy; <span id="yr">2026</span> Hyperliquid Bot</p>
+</footer>
+
+<script src="../app.js" defer></script>
+</body>
+</html>

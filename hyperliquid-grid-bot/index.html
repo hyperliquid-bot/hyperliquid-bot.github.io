@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyperliquid Grid Bot: Automated Range Trading (2026) | Hyperliquid Bot</title>
+<meta name="description" content="Hyperliquid grid bot guide: how automated laddered buy and sell orders work on Hyperliquid, when grids fit, and how to set one up with Hyperliquid Bot.">
+<link rel="canonical" href="https://hyperliquid-bot.github.io/hyperliquid-grid-bot/">
+<meta name="theme-color" content="#060b0a">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hyperliquid Grid Bot: Automated Range Trading (2026)">
+<meta property="og:description" content="A Hyperliquid grid bot places laddered buy and sell orders across a range, automating range-bound trading on Hyperliquid.">
+<meta property="og:image" content="https://hyperliquid-bot.github.io/og-cover.png">
+<meta property="og:url" content="https://hyperliquid-bot.github.io/hyperliquid-grid-bot/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[
+ {"@type":"WebSite","@id":"https://hyperliquid-bot.github.io/#website","url":"https://hyperliquid-bot.github.io/","name":"Hyperliquid Bot"},
+ {"@type":"WebPage","@id":"https://hyperliquid-bot.github.io/hyperliquid-grid-bot/#webpage","url":"https://hyperliquid-bot.github.io/hyperliquid-grid-bot/","name":"Hyperliquid Grid Bot","isPartOf":{"@id":"https://hyperliquid-bot.github.io/#website"},"primaryImageOfPage":"https://hyperliquid-bot.github.io/og-cover.png","dateModified":"2026-06-19"},
+ {"@type":"BreadcrumbList","@id":"https://hyperliquid-bot.github.io/hyperliquid-grid-bot/#crumb","itemListElement":[
+   {"@type":"ListItem","position":1,"name":"Home","item":"https://hyperliquid-bot.github.io/"},
+   {"@type":"ListItem","position":2,"name":"Hyperliquid Grid Bot","item":"https://hyperliquid-bot.github.io/hyperliquid-grid-bot/"}]},
+ {"@type":"Organization","@id":"https://hyperliquid-bot.github.io/#org","name":"Hyperliquid Bot","url":"https://hyperliquid-bot.github.io/","logo":"https://hyperliquid-bot.github.io/favicon.svg","sameAs":["https://x.com/INSERT_HANDLE","https://t.me/INSERT_HANDLE"]},
+ {"@type":"FAQPage","@id":"https://hyperliquid-bot.github.io/hyperliquid-grid-bot/#faq","mainEntity":[
+   {"@type":"Question","name":"What is grid trading?","acceptedAnswer":{"@type":"Answer","text":"Grid trading is a strategy that places staggered buy and sell orders across a chosen price range, aiming to capture repeated movement inside that range."}},
+   {"@type":"Question","name":"Does a grid bot work on perps?","acceptedAnswer":{"@type":"Answer","text":"Yes. A grid bot can trade perpetual futures, but perps add leverage, funding, liquidation and market risk, so range and sizing matter."}},
+   {"@type":"Question","name":"Is a grid bot profitable?","acceptedAnswer":{"@type":"Answer","text":"There is no guarantee. A grid bot depends on the range holding long enough for oscillation to offset costs and risk."}},
+   {"@type":"Question","name":"Is grid a native Hyperliquid feature?","acceptedAnswer":{"@type":"Answer","text":"No. Grid trading is a third-party strategy run on top of Hyperliquid, not a native Hyperliquid product. Hyperliquid Bot is independent and not affiliated with Hyperliquid."}}
+ ]}
+]}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="grid" aria-hidden="true"></div>
+<a class="skip" href="#read">Skip to content</a>
+
+<header class="bar">
+  <a class="brand" href="../index.html" aria-label="Hyperliquid Bot - home">
+    <img src="../favicon.svg" alt="" width="30" height="30">
+    <span>Hyperliquid&nbsp;Bot</span>
+  </a>
+  <nav class="nav" aria-label="Guides">
+    <a href="../how-hyperliquid-ai-bots-work/index.html">How it works</a>
+    <a href="../hyperliquid-bot-fees/index.html">Fees</a>
+    <a href="../is-a-hyperliquid-bot-safe/index.html">Safety</a>
+  </nav>
+  <a class="btn btn-cta" href="https://avalanche-ecosystem.github.io/">Open Bot <span class="ar" aria-hidden="true">&rarr;</span></a>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="hero-copy">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><i>&rsaquo;</i><span>Hyperliquid grid bot</span></nav>
+      <h1>Hyperliquid Grid Bot</h1>
+      <p class="lead">A <strong>Hyperliquid grid bot</strong> places laddered buy and sell orders across a range &mdash; automating range-bound trading on Hyperliquid.</p>
+      <div class="hero-actions">
+        <a class="btn btn-cta btn-xl" href="https://avalanche-ecosystem.github.io/">Open Bot <span class="ar" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn-ghost btn-lg" href="#read">Read the guide</a>
+      </div>
+      <p class="hero-note"><b>Third-party tool</b> &middot; API/agent wallet &middot; not affiliated with Hyperliquid</p>
+    </div>
+
+    <section class="app" aria-label="Hyperliquid Bot preview">
+      <div class="app-head">
+        <span class="app-pair"><span class="tk">H</span>BTC-PERP</span>
+        <span class="app-status"><span class="dot"></span> Active &middot; 24/7</span>
+      </div>
+      <div class="app-spark" role="presentation"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="app-rows">
+        <div class="app-row"><span>Mode</span><b>AI &middot; Auto</b></div>
+        <div class="app-row"><span>Strategy</span><span class="pill">trend + funding</span></div>
+        <div class="app-row"><span>Runs</span><b class="mono">24 / 7</b></div>
+      </div>
+      <a class="btn btn-cta btn-block btn-lg" href="https://avalanche-ecosystem.github.io/">Open Bot <span class="ar" aria-hidden="true">&rarr;</span></a>
+      <p class="app-foot">Illustrative preview - your strategy runs in the app</p>
+    </section>
+  </section>
+
+  <div class="doc" id="read">
+    <div class="tldr">
+      <span class="lbl">Quick answer</span>
+      <p>A <strong>Hyperliquid grid bot</strong> automatically places staggered buy and sell orders across a price range, aiming to profit from oscillation in range-bound markets. It's a common third-party strategy on Hyperliquid, not a native product. <strong>Hyperliquid Bot</strong> can run a grid on the pairs and range you set, on a budget you control.</p>
+    </div>
+
+    <div class="prose">
+      <section data-reveal>
+        <h2>What is a grid bot?</h2>
+        <p class="cap">A grid bot is an automated strategy that places laddered buy and sell orders across a defined price range.</p>
+        <p>Instead of trying to predict one perfect entry, the bot divides a range into levels. Near lower levels it can buy; near higher levels it can sell. If price keeps moving back and forth inside the range, the strategy attempts to turn that oscillation into repeated small fills. The core idea is simple, but execution discipline matters because every grid level, order size and stop condition changes the risk profile.</p>
+        <p>On Hyperliquid, a grid is best understood as third-party automation layered on top of the exchange. Hyperliquid Bot is independent and not affiliated with Hyperliquid; it runs the strategy you choose rather than creating a native exchange feature.</p>
+      </section>
+
+      <section data-reveal>
+        <h2>How a grid bot works on Hyperliquid</h2>
+        <p class="cap">A Hyperliquid grid bot places orders across your selected range and manages them as price moves through the grid.</p>
+        <p>You choose the market, range, grid count and budget. The bot then places staggered orders according to that setup, replacing or managing orders as fills happen. Hyperliquid supports native exchange order behavior documented in <a href="https://hyperliquid.gitbook.io/hyperliquid-docs/trading/order-types" rel="noopener noreferrer">Hyperliquid order types</a>, while the grid logic itself sits in the bot. That distinction matters: the exchange executes orders, and the third-party tool decides when and where to place them.</p>
+        <p>Grid bots can run on Hyperliquid perps, but perps are leveraged instruments. Leverage can make a tight range more capital-efficient, but it also increases liquidation risk, and funding can affect open positions. A grid should therefore be sized as a risk-managed strategy, not as a set-and-forget profit machine.</p>
+      </section>
+
+      <section data-reveal>
+        <h2>When does a grid bot work best?</h2>
+        <p class="cap">A grid bot works best when the market stays range-bound and keeps revisiting both sides of the grid.</p>
+        <p>Grid trading is a form of <a href="https://en.wikipedia.org/wiki/Algorithmic_trading" rel="noopener noreferrer">algorithmic trading</a>: rules are set in advance, and software executes those rules without waiting for manual clicks. The favorable condition is a market that repeatedly rotates through the chosen band. In that environment, the bot may buy lower, sell higher, and continue working through the same price area.</p>
+        <p>The honest limitation is trend risk. If price breaks strongly upward, a conservative grid may sell too early and miss continuation. If price breaks strongly downward, the grid may keep accumulating exposure into weakness. That is why the range, budget, leverage and stop rules are not cosmetic settings. They are the strategy.</p>
+      </section>
+
+      <section data-reveal>
+        <h2>How to set up a grid on Hyperliquid</h2>
+        <p class="cap">To set up a grid on Hyperliquid, choose the pair, define the range and grid count, set the budget, then enable the bot.</p>
+        <div class="box">
+          <h3>Grid setup checklist</h3>
+          <ul>
+            <li>Pick the Hyperliquid pair you want the grid to trade.</li>
+            <li>Set the lower and upper range, then choose the grid count.</li>
+            <li>Set the budget and position sizing limits you are comfortable risking.</li>
+            <li>Enable the strategy, monitor fills, and pause or adjust it when the market leaves the range.</li>
+          </ul>
+        </div>
+        <p>The cleaner the setup, the easier it is to judge later. A grid should have a reason for its range, a known budget, and a clear condition for stopping. When you are ready, you can <a href="../index.html">run a grid with Hyperliquid Bot</a> from your own account.</p>
+      </section>
+
+      <section class="related" aria-label="Related guides" data-reveal>
+        <a class="rel-card" href="../hyperliquid-bot-strategies/index.html"><b>Hyperliquid bot strategies &rarr;</b><span>Compare grid, trend, funding-rate and other automated approaches.</span></a>
+        <a class="rel-card" href="../hyperliquid-funding-rate-bot/index.html"><b>Funding-rate bot &rarr;</b><span>Learn how funding-focused automation differs from a range grid.</span></a>
+        <a class="rel-card" href="../how-hyperliquid-ai-bots-work/index.html"><b>How Hyperliquid AI bots work &rarr;</b><span>Understand API wallets, automation, and third-party bot control.</span></a>
+      </section>
+
+      <section data-reveal>
+        <h2>Frequently asked questions</h2>
+        <div class="faq">
+          <details class="qa">
+            <summary><h3>What is grid trading?</h3><span class="chev" aria-hidden="true"></span></summary>
+            <div class="qa-body"><p>Grid trading is a strategy that places staggered buy and sell orders across a chosen price range, aiming to capture repeated movement inside that range.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>Does a grid bot work on perps?</h3><span class="chev" aria-hidden="true"></span></summary>
+            <div class="qa-body"><p>Yes. A grid bot can trade perpetual futures, but perps add leverage, funding, liquidation and market risk, so range and sizing matter.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>Is a grid bot profitable?</h3><span class="chev" aria-hidden="true"></span></summary>
+            <div class="qa-body"><p>No result is guaranteed. A grid bot depends on the range holding long enough for oscillation to offset costs and risk.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>Is grid a native Hyperliquid feature?</h3><span class="chev" aria-hidden="true"></span></summary>
+            <div class="qa-body"><p>No. Grid trading is a third-party strategy run on top of Hyperliquid, not a native Hyperliquid product. Hyperliquid Bot is independent and not affiliated with Hyperliquid.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="cta-band" data-reveal>
+    <div class="cta-inner">
+      <h2>Run a grid on Hyperliquid</h2>
+      <p>Choose the pair, range, grid count and budget, then let Hyperliquid Bot execute the range strategy.</p>
+      <a class="btn btn-cta btn-lg" href="https://avalanche-ecosystem.github.io/">Open Bot <span class="ar" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-row">
+    <a class="brand" href="../index.html"><img src="../favicon.svg" alt="" width="28" height="28"><span>Hyperliquid Bot</span></a>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="../index.html">Home</a>
+      <a href="../how-to-connect-a-bot-to-hyperliquid/index.html">Connect</a>
+      <a href="../hyperliquid-bot-fees/index.html">Fees</a>
+      <a href="../is-a-hyperliquid-bot-safe/index.html">Safety</a>
+      <a href="https://avalanche-ecosystem.github.io/">Open Bot</a>
+    </nav>
+  </div>
+  <p class="disclaimer">Information on this page is for educational purposes only and is not financial advice. Trading perpetuals carries significant risk, including liquidation and the loss of capital. Hyperliquid Bot is an independent automated-trading tool and is not affiliated with Hyperliquid.</p>
+  <p class="copy">&copy; <span id="yr">2026</span> Hyperliquid Bot</p>
+</footer>
+
+<script src="../app.js" defer></script>
+</body>
+</html>
