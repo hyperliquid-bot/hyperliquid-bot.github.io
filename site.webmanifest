@@ -1,13 +1,18 @@
 {
   "name": "Hyperliquid Bot",
   "short_name": "Hyperliquid Bot",
-  "description": "Automated and AI trading bot for Hyperliquid — runs strategies on perps and spot 24/7 from your own account.",
-  "start_url": "/",
+  "description": "Hyperliquid Bot automates perp trading strategies on Hyperliquid from your own connected wallet.",
+  "start_url": "https://hyperliquid-bot.github.io/",
+  "scope": "https://hyperliquid-bot.github.io/",
   "display": "standalone",
-  "background_color": "#060b0a",
-  "theme_color": "#060b0a",
+  "background_color": "#F6F8F7",
+  "theme_color": "#1FB3A3",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
