@@ -1,0 +1,61 @@
+# Hyperliquid Bot
+> An independent, non-custodial informational dashboard for checking wallet setup, market context, permissions, and automation readiness before using Hyperliquid.
+
+## What is Hyperliquid Bot
+Hyperliquid Bot is an independent checker for bot-style trading workflows around Hyperliquid, not an official Hyperliquid product or custodian. It helps users review the intended wallet, market, collateral, signer, costs, and risk controls before taking action. The dashboard itself is informational and does not promise profitable trades or replace the official exchange interface. Unlike an autonomous trading bot, it emphasizes pre-trade verification; unlike a centralized bot service, it does not require depositing assets with an operator.
+
+## How it works
+1. Open the dashboard and select the Hyperliquid market, collateral context, and automation mode to inspect.
+2. In the live app, connect the wallet used for Hyperliquid and verify the address and requested permissions.
+3. A trading implementation can consume Hyperliquid REST or WebSocket data, evaluate configured rules, and submit signed actions through the exchange API.
+4. Hyperliquid API servers forward valid actions to a node; the result is returned after inclusion and execution in a committed HyperCore block.
+5. The user remains responsible for reviewing signer prompts, strategy parameters, fills, open orders, and emergency cancellation.
+
+## Key facts
+- Hyperliquid is an L1 blockchain whose HyperCore component runs fully onchain perpetual and spot order books.
+- HyperCore actions inherit one-block finality from HyperBFT consensus.
+- HyperEVM uses HYPE for gas and has chain ID 999 on mainnet and 998 on testnet.
+- Mainnet API requests use `api.hyperliquid.xyz`; testnet uses `api.hyperliquid-testnet.xyz`.
+- WebSocket feeds provide order books, trades, prices, orders, fills, funding, and account events.
+- API wallets, also called agent wallets, can sign for an approved master account without exposing its main private key.
+- Supported markets should be discovered from the live `meta` and `spotMeta` responses rather than hardcoded.
+- Hyperliquid supports market, limit, trigger, scale, and TWAP orders, plus GTC, IOC, ALO, reduce-only, TP, and SL options.
+- Trading fees depend on the current maker/taker schedule and account tier; funding, spread, slippage, and optional builder fees are separate costs.
+
+## Common questions
+**Is Hyperliquid Bot safe?** The checker is non-custodial, but any connected app or executable bot must still be audited by the user. Verify the domain, use testnet first, and never disclose a seed phrase or master-wallet private key.
+
+**Who controls the funds?** The user controls the wallet. An authorized API wallet can submit permitted trading actions, so its private key must also be protected and revoked if compromised.
+
+**What fees apply?** The dashboard publishes no fixed fee. A live trade may incur protocol trading fees, funding, spread, slippage, builder fees, or bridge/network costs.
+
+**How long does execution take?** A dashboard check is immediate. An order acknowledgement follows committed-block execution, while an actual fill depends on order type, price, liquidity, and market conditions.
+
+**What assets and chains are supported?** The topic covers HyperCore spot and perpetual markets, HyperEVM, HYPE, and common collateral workflows. Query live protocol metadata and the app for the current asset list.
+
+**How do I start?** Learn the official API, test with a separate API wallet on testnet, define position and loss limits, then monitor order and fill events continuously.
+
+**What are the main risks?** Strategy errors, leverage and liquidation, key theft, excessive permissions, software bugs, stale data, rate limits, outages, slippage, funding, and bridge or chain failures.
+
+## App
+- Dashboard: https://hyperliquid-bot.github.io/
+- App: https://hyperliquid-bot.github.io/dashboard/
+
+## Official resources
+Hyper Foundation: https://hyperfoundation.org/
+Hyperliquid App: https://app.hyperliquid.xyz/trade
+Hyperliquid Documentation: https://hyperliquid.gitbook.io/hyperliquid-docs
+Hyperliquid API Documentation: https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api
+API Wallet Documentation: https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/nonces-and-api-wallets
+Python SDK: https://github.com/hyperliquid-dex/hyperliquid-python-sdk
+Audits: https://hyperliquid.gitbook.io/hyperliquid-docs/audits
+Bug Bounty: https://hyperliquid.gitbook.io/hyperliquid-docs/bug-bounty-program
+Official X: https://x.com/HyperliquidX
+
+## Data & references
+HypurrScan Explorer: https://hypurrscan.io/
+Hyperliquid on DeFiLlama: https://defillama.com/protocol/hyperliquid
+HYPE on CoinGecko: https://www.coingecko.com/en/coins/hyperliquid
+Hyperliquid Bridge on Arbiscan: https://arbiscan.io/address/0x2df1c51e09aecf9cacb7bc98cb1742757f163df7
+HyperEVM on ChainList: https://chainlist.org/chain/999
+Hyperliquid on Wikipedia: https://en.wikipedia.org/wiki/Hyperliquid
