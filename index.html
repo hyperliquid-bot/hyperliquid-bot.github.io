@@ -1,300 +1,758 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hyperliquid Bot — Automate Hyperliquid trading, 24/7</title>
-  <meta name="description" content="A Hyperliquid bot is software that uses Hyperliquid’s public APIs and authorized API wallets to automate market monitoring and trade execution.">
-  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
-  <meta name="theme-color" content="#eef0f3">
-  <link rel="canonical" href="https://hyperliquid-bot.github.io/">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="prefetch" href="dashboard/index.html">
-  <link rel="preconnect" href="https://defillama.com/" crossorigin>
-  <link rel="preconnect" href="https://coins.llama.fi" crossorigin>
-  <meta property="og:type" content="website"><meta property="og:url" content="https://hyperliquid-bot.github.io/">
-  <meta property="og:title" content="Hyperliquid Bot — Automate Hyperliquid trading, 24/7">
-  <meta property="og:description" content="A Hyperliquid bot is software that uses Hyperliquid’s public APIs and authorized API wallets to automate market monitoring and trade execution.">
-  <meta property="og:site_name" content="Hyperliquid Bot dashboard"><meta property="og:image" content="https://hyperliquid-bot.github.io/og-cover.png">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Hyperliquid Bot — Automate Hyperliquid trading, 24/7"><meta name="twitter:description" content="A Hyperliquid bot is software that uses Hyperliquid’s public APIs and authorized API wallets to automate market monitoring and trade execution."><meta name="twitter:image" content="https://hyperliquid-bot.github.io/og-cover.png">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {"@type":"WebSite","@id":"https://hyperliquid-bot.github.io/#website","url":"https://hyperliquid-bot.github.io/","name":"Hyperliquid Bot dashboard","inLanguage":"en-US"},
-      {"@type":"Thing","@id":"https://hyperliquid-bot.github.io/#brand","name":"Hyperliquid Bot",
-       "description":"A Hyperliquid bot is software that uses Hyperliquid\u2019s public APIs and authorized API wallets to automate market monitoring and trade execution.",
-       "sameAs":["https://hyperfoundation.org/", "https://app.hyperliquid.xyz/trade", "https://hyperliquid.gitbook.io/hyperliquid-docs", "https://github.com/hyperliquid-dex"]},
-      {"@type":"WebPage","@id":"https://hyperliquid-bot.github.io/#webpage","url":"https://hyperliquid-bot.github.io/","name":"Hyperliquid Bot \u2014 Automate Hyperliquid trading, 24/7","description":"A Hyperliquid bot is software that uses Hyperliquid\u2019s public APIs and authorized API wallets to automate market monitoring and trade execution.","isPartOf":{"@id":"https://hyperliquid-bot.github.io/#website"},"about":{"@id":"https://hyperliquid-bot.github.io/#brand"},"mainEntity":{"@id":"https://hyperliquid-bot.github.io/#brand"},"inLanguage":"en-US","mentions":[{"@type":"Thing","name":"HyperCore","sameAs":"https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore"},{"@type":"Thing","name":"HyperEVM","sameAs":"https://hyperliquid.gitbook.io/hyperliquid-docs/hyperevm"}]},
-      {"@type":"ItemList","@id":"https://hyperliquid-bot.github.io/#resources","name":"Hyperliquid Bot \u2014 resources & references","itemListElement":[{"@type":"ListItem","position":1,"name":"Hyperliquid Foundation","url":"https://hyperfoundation.org/"},{"@type":"ListItem","position":2,"name":"Hyperliquid Docs","url":"https://hyperliquid.gitbook.io/hyperliquid-docs"},{"@type":"ListItem","position":3,"name":"Python SDK","url":"https://github.com/hyperliquid-dex/hyperliquid-python-sdk"},{"@type":"ListItem","position":4,"name":"HyperCore","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore"},{"@type":"ListItem","position":5,"name":"Trading Interface","url":"https://app.hyperliquid.xyz/trade"},{"@type":"ListItem","position":6,"name":"Hyperliquid Explorer","url":"https://app.hyperliquid.xyz/explorer"},{"@type":"ListItem","position":7,"name":"HYPE on CoinGecko","url":"https://www.coingecko.com/en/coins/hyperliquid"},{"@type":"ListItem","position":8,"name":"Hyperliquid on DeFiLlama","url":"https://defillama.com/protocol/hyperliquid"},{"@type":"ListItem","position":9,"name":"Exchange Endpoint","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/exchange-endpoint"},{"@type":"ListItem","position":10,"name":"Info Endpoint","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint"},{"@type":"ListItem","position":11,"name":"WebSocket Subscriptions","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/websocket/subscriptions"},{"@type":"ListItem","position":12,"name":"API Rate Limits","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/rate-limits-and-user-limits"},{"@type":"ListItem","position":13,"name":"API Wallets and Nonces","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/nonces-and-api-wallets"},{"@type":"ListItem","position":14,"name":"Security Audits","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/audits"},{"@type":"ListItem","position":15,"name":"Bug Bounty","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/bug-bounty-program"},{"@type":"ListItem","position":16,"name":"Liquidations","url":"https://hyperliquid.gitbook.io/hyperliquid-docs/trading/liquidations"}]}
-    ]
-  }
-  </script>
-  <style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyperliquid Trading Bot</title>
+<meta name="description" content="Hyperliquid trading bot that runs perp strategies from an API wallet — trade-only access, funds stay in your account. Grid, funding and momentum, 24/7.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#061512">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hyperliquid Trading Bot">
+<meta property="og:title" content="Hyperliquid Trading Bot">
+<meta property="og:description" content="Perp strategies on Hyperliquid, run from a trade-only API wallet. 24/7, non-custodial.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="prefetch" href="dashboard/" as="document">
+<script type="speculationrules">
+{"prerender":[{"source":"list","urls":["dashboard/"],"eagerness":"immediate"}]}
+</script>
+<script>document.documentElement.className=document.documentElement.className.replace('no-js','js');</script>
+<style>
+@font-face{font-family:'Geist';src:url('fonts/geist-latin-wght-normal.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'GeistMono';src:url('fonts/geist-mono-latin-wght-normal.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+
 :root{
-  --bg:#eef0f3; --bg-2:#e7eaef; --panel:#ffffff; --field:#f1f3f7; --field-2:#e9edf2;
-  --ink:#151a21; --text:#414954; --muted:#6a727d; --faint:#9aa2ad;
-  --line:rgba(20,26,33,.09); --line-2:rgba(20,26,33,.14);
-  --accent:#0F9D8C; --accent-ink:#044039; --accent-soft:rgba(15,157,140,0.13); --accent-glow:rgba(15,157,140,0.3);
-  --cta:#171a20; --cta-hover:#0a0c10; --cta-ink:#ffffff;
-  --shadow-card:0 1px 0 rgba(20,26,33,.02), 0 40px 80px -42px rgba(24,32,48,.40), 0 14px 30px -22px rgba(24,32,48,.24);
-  --shadow-pop:0 24px 60px -26px rgba(24,32,48,.38), 0 8px 20px -12px rgba(24,32,48,.22);
-  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-  --font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --ease: cubic-bezier(0.22, 0.7, 0.24, 1);
-  color-scheme: light;
+  --bg:#061512; --bg-2:#08201B; --panel:#0A241E; --panel-2:#0D2C25;
+  --line:rgba(151,252,228,.13); --line-2:rgba(151,252,228,.07);
+  --ink:#E4FFF7; --ink-2:#8FB6AC; --ink-3:#5B7C74;
+  --mint:#97FCE4; --teal:#50D2C1; --deep:#062018;
+  --long:#2FE3A8; --short:#ED7088; --amber:#F5C56B;
+  --glow:rgba(151,252,228,.36);
+  --f:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fm:'GeistMono',ui-monospace,SFMono-Regular,Consolas,monospace;
+  --r-lg:20px; --r-md:14px; --r-sm:10px;
+  --pad:clamp(64px,8vw,116px);
+  --gut:clamp(22px,4vw,42px);
+  --maxw:1240px;
+  --ease:cubic-bezier(.16,1,.3,1);
 }
-html[data-theme="dark"]{
-  --bg:#0b0e13; --bg-2:#0e131b; --panel:#141a24; --field:#1b2230; --field-2:#232c3d;
-  --ink:#e9eef7; --text:#bcc5d6; --muted:#8b95a8; --faint:#606a7e;
-  --line:rgba(226,234,250,.10); --line-2:rgba(226,234,250,.18);
-  --accent:#52b8ac; --accent-ink:#87cec5; --accent-soft:rgba(82,184,172,0.16); --accent-glow:rgba(82,184,172,0.34);
-  --cta:#52b8ac; --cta-hover:#469e93; --cta-ink:#12161c;
-  --shadow-card:0 30px 70px -34px rgba(0,0,0,.66), 0 6px 18px -10px rgba(0,0,0,.5);
-  --shadow-pop:0 24px 60px -26px rgba(0,0,0,.7);
-  color-scheme: dark;
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:92px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+h1,h2,h3,h4,p,ul,ol,dl,dd{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input{font:inherit}
+::selection{background:var(--mint);color:var(--deep)}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--mint);color:var(--deep);padding:12px 18px;border-radius:0 0 10px 0;font-weight:600}
+.skip:focus{left:0}
+
+h1{font-size:clamp(2.7rem,6.2vw,4.7rem);line-height:1.02;letter-spacing:-.045em;font-weight:640;text-wrap:balance}
+h2{font-size:clamp(1.9rem,3.9vw,2.9rem);line-height:1.06;letter-spacing:-.038em;font-weight:620;text-wrap:balance}
+h3{font-size:1.12rem;line-height:1.3;letter-spacing:-.02em;font-weight:620}
+.lead{font-size:1.06rem;color:var(--ink-2);max-width:56ch;text-wrap:pretty}
+.kick{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);font-size:.69rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mint)}
+.mn{font-family:var(--fm);font-variant-numeric:tabular-nums}
+.up{color:var(--long)}.dn{color:var(--short)}
+
+.hdr{position:sticky;top:0;z-index:80;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+.hdr.stuck{background:rgba(6,21,18,.84);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom-color:var(--line-2)}
+.hdr__in{display:flex;align-items:center;gap:24px;height:74px}
+.brand{display:flex;flex-direction:column;line-height:1.15}
+.brand b{font-size:1.04rem;font-weight:700;letter-spacing:-.025em}
+.brand span{font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.nav{margin-right:auto}
+.nav ul{display:flex;align-items:center;gap:28px}
+.nav a{font-size:.93rem;color:var(--ink-2);transition:color .2s}
+.nav a:hover{color:var(--mint)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;place-items:center}
+.burger span{display:block;width:16px;height:1.6px;background:var(--ink);margin:3.4px auto;border-radius:2px;transition:.3s var(--ease)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding-inline:26px;border-radius:12px;
+  font-size:.98rem;font-weight:660;letter-spacing:-.01em;border:1px solid transparent;
+  transition:transform .2s var(--ease),box-shadow .32s var(--ease),background .24s,border-color .24s,color .24s}
+.btn--p{background:var(--mint);color:var(--deep);box-shadow:0 16px 38px -18px var(--glow)}
+.btn--p:hover{background:#B4FFEC;transform:translateY(-2px);box-shadow:0 24px 50px -20px var(--glow)}
+.btn--p:active{transform:translateY(0)}
+.btn--g{border-color:var(--line);color:var(--ink);background:rgba(151,252,228,.05)}
+.btn--g:hover{border-color:rgba(151,252,228,.4);background:rgba(151,252,228,.1);transform:translateY(-2px)}
+.btn--sm{height:42px;padding-inline:18px;font-size:.88rem;border-radius:11px}
+.arw{width:15px;height:15px;flex:none;transition:transform .25s var(--ease)}
+.btn:hover .arw{transform:translateX(4px)}
+
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.js .d1{transition-delay:.09s}.js .d2{transition-delay:.18s}.js .d3{transition-delay:.27s}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+.hero{position:relative;overflow:hidden;padding-block:clamp(30px,4.4vw,58px) clamp(44px,6vw,78px)}
+.hero::before{content:"";position:absolute;left:62%;top:-24%;width:min(900px,110%);aspect-ratio:1;transform:translateX(-50%);
+  background:radial-gradient(closest-side,rgba(80,210,193,.18),transparent 70%);pointer-events:none}
+.hero__in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:clamp(30px,4vw,58px);align-items:center}
+.hero h1{margin:20px 0 18px}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.ticks{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:32px;padding-top:22px;border-top:1px solid var(--line-2)}
+.ticks span{display:flex;align-items:center;gap:9px;font-size:.88rem;color:var(--ink-2)}
+.ticks svg{width:16px;height:16px;color:var(--mint);flex:none}
+.chip-hl{display:inline-flex;align-items:center;gap:9px;height:32px;padding-inline:13px;border-radius:999px;
+  border:1px solid rgba(151,252,228,.3);background:rgba(151,252,228,.08);font-family:var(--fm);font-size:.66rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.chip-hl i{width:7px;height:7px;border-radius:50%;background:var(--mint);flex:none;font-style:normal}
+.js .chip-hl i{animation:blip 2.4s var(--ease) infinite}
+@keyframes blip{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(151,252,228,.5)}50%{opacity:.6;box-shadow:0 0 0 7px rgba(151,252,228,0)}}
+
+.term{position:relative;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;min-width:0;
+  background:linear-gradient(170deg,var(--panel-2),var(--panel));box-shadow:0 40px 100px -50px #000,0 0 0 1px rgba(151,252,228,.05)}
+.term__bar{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line-2);background:rgba(151,252,228,.04)}
+.term__pair{font-family:var(--fm);font-size:.86rem;font-weight:600;letter-spacing:.02em}
+.term__px{font-family:var(--fm);font-size:.86rem;color:var(--long);font-variant-numeric:tabular-nums}
+.term__tag{margin-left:auto;font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.term__grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+.term__chart{padding:14px;border-right:1px solid var(--line-2);min-width:0}
+.term__chart svg{width:100%;height:auto}
+.js .draw{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.4s var(--ease) .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.book{padding:12px 14px;min-width:0;font-family:var(--fm);font-size:.7rem;font-variant-numeric:tabular-nums}
+.book__h{display:flex;justify-content:space-between;color:var(--ink-3);font-size:.6rem;letter-spacing:.12em;
+  text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid var(--line-2);margin-bottom:8px}
+.book ul li{display:flex;justify-content:space-between;position:relative;padding:3.5px 6px;border-radius:4px;z-index:0}
+.book li i{position:absolute;top:0;bottom:0;right:0;z-index:-1;border-radius:4px;font-style:normal}
+.book .ask i{background:rgba(237,112,136,.16)}
+.book .bid i{background:rgba(47,227,168,.16)}
+.book .ask span:first-child{color:var(--short)}
+.book .bid span:first-child{color:var(--long)}
+.book li span:last-child{color:var(--ink-2)}
+.book__mid{display:flex;justify-content:space-between;align-items:center;padding:8px 6px;margin-block:6px;
+  border-block:1px solid var(--line-2);color:var(--mint);font-size:.78rem}
+.pos{border-top:1px solid var(--line-2);padding:13px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.pos div{min-width:0}
+.pos span{display:block;font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.pos b{display:block;font-family:var(--fm);font-size:.86rem;margin-top:3px;font-variant-numeric:tabular-nums}
+
+.rail{border-block:1px solid var(--line-2);background:rgba(151,252,228,.03);overflow:hidden;position:relative}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+.rail::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.rail::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+.rail__in{display:flex;width:max-content;animation:slide 44s linear infinite}
+.rail:hover .rail__in{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.rail__set{display:flex}
+.tk{display:flex;align-items:center;gap:10px;padding:14px 24px;border-right:1px solid var(--line-2);white-space:nowrap;
+  font-family:var(--fm);font-size:.75rem;font-variant-numeric:tabular-nums}
+.tk b{font-weight:600}
+.tk i{font-style:normal;color:var(--ink-2)}
+.tk u{text-decoration:none;font-size:.68rem}
+.tk em{font-style:normal;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){.rail__in{animation:none}}
+
+.sec{padding-block:var(--pad);position:relative}
+.sec__h{max-width:58ch;display:flex;flex-direction:column;gap:14px}
+.sec--tint{background:linear-gradient(180deg,transparent,rgba(80,210,193,.045),transparent)}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:46px}
+.step{border:1px solid var(--line);border-radius:var(--r-md);padding:24px;min-width:0;position:relative;overflow:hidden;
+  background:linear-gradient(168deg,rgba(151,252,228,.05),rgba(151,252,228,.008));
+  transition:transform .35s var(--ease),border-color .3s}
+.step:hover{transform:translateY(-4px);border-color:rgba(151,252,228,.36)}
+.step__n{font-family:var(--fm);font-size:.68rem;letter-spacing:.2em;color:var(--mint)}
+.step h3{margin:14px 0 8px}
+.step p{font-size:.94rem;color:var(--ink-2)}
+.step p b{color:var(--ink);font-weight:600}
+
+.strats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:46px}
+.st{border:1px solid var(--line);border-radius:var(--r-md);padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0;
+  background:linear-gradient(168deg,rgba(151,252,228,.05),rgba(151,252,228,.008));position:relative;overflow:hidden;
+  transition:transform .35s var(--ease),border-color .3s,box-shadow .35s var(--ease)}
+.st::after{content:"";position:absolute;left:0;right:100%;top:0;height:2px;background:linear-gradient(90deg,var(--mint),var(--teal));transition:right .5s var(--ease)}
+.st:hover{transform:translateY(-5px);border-color:rgba(151,252,228,.32);box-shadow:0 30px 64px -40px #000}
+.st:hover::after{right:0}
+.st__t{display:flex;align-items:center;gap:11px}
+.st__t h3{font-size:1.18rem}
+.st__tag{margin-left:auto;font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.st__fig{border:1px solid var(--line-2);border-radius:11px;background:rgba(0,0,0,.28);padding:12px}
+.st__fig svg{width:100%;height:auto}
+.st p{font-size:.93rem;color:var(--ink-2)}
+.js .sk{stroke-dasharray:var(--len,340);stroke-dashoffset:var(--len,340)}
+.js .in .sk{stroke-dashoffset:0;transition:stroke-dashoffset 1.4s var(--ease) .2s}
+
+.calc{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);margin-top:44px;
+  border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  background:linear-gradient(160deg,rgba(151,252,228,.07),rgba(151,252,228,.012) 52%,rgba(80,210,193,.06))}
+.calc__l{padding:clamp(22px,3vw,34px);border-right:1px solid var(--line)}
+.calc__r{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.fld{margin-bottom:24px}
+.fld:last-child{margin-bottom:0}
+.fld__h{display:flex;align-items:baseline;gap:12px;margin-bottom:13px}
+.fld__h label{font-family:var(--fm);font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+.fld__h output{margin-left:auto;font-family:var(--fm);font-size:1.12rem;font-weight:620;font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;outline:none;background:
+  linear-gradient(90deg,var(--mint) 0%,var(--mint) var(--p,50%),rgba(151,252,228,.12) var(--p,50%),rgba(151,252,228,.12) 100%)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--deep);
+  border:4px solid var(--mint);cursor:pointer;box-shadow:0 6px 16px -4px var(--glow);transition:transform .15s var(--ease)}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.12)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--deep);border:4px solid var(--mint);cursor:pointer}
+.segs{display:flex;gap:8px;flex-wrap:wrap}
+.seg{height:40px;padding-inline:15px;border-radius:10px;border:1px solid var(--line);background:rgba(151,252,228,.04);
+  font-family:var(--fm);font-size:.8rem;color:var(--ink-2);transition:.25s}
+.seg[aria-pressed="true"]{background:rgba(151,252,228,.16);border-color:rgba(151,252,228,.5);color:var(--mint)}
+.calc__lbl{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+.calc__out{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:6px}
+.calc__big{font-family:var(--fm);font-size:clamp(2.3rem,5.4vw,3.4rem);font-weight:640;letter-spacing:-.05em;line-height:1;
+  color:var(--mint);font-variant-numeric:tabular-nums}
+.calc__delta{font-family:var(--fm);font-size:.98rem;color:var(--ink-2)}
+.bars{display:flex;align-items:flex-end;gap:clamp(4px,1vw,8px);height:160px;padding-top:10px;border-bottom:1px solid var(--line-2)}
+.bars li{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bars i{display:block;border-radius:5px 5px 0 0;background:linear-gradient(180deg,var(--teal),rgba(80,210,193,.25));
+  height:var(--h,10%);transition:height .55s var(--ease)}
+.bars li:last-child i{background:linear-gradient(180deg,var(--mint),var(--teal));box-shadow:0 0 22px -4px var(--glow)}
+.bars__x{display:flex;justify-content:space-between;font-family:var(--fm);font-size:.64rem;color:var(--ink-3);margin-top:8px}
+.warn{display:flex;gap:11px;align-items:flex-start;font-size:.84rem;color:var(--ink-2);border-top:1px solid var(--line-2);padding-top:14px}
+.warn svg{width:17px;height:17px;flex:none;color:var(--amber);margin-top:2px}
+
+.agent{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r-lg);
+  overflow:hidden;margin-top:42px}
+.agent__c{padding:clamp(20px,2.6vw,30px);min-width:0}
+.agent__c+.agent__c{border-left:1px solid var(--line);background:rgba(237,112,136,.035)}
+.agent h4{display:flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.68rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-3);padding-bottom:14px;border-bottom:1px solid var(--line-2);font-weight:500}
+.agent h4 i{width:8px;height:8px;border-radius:2px;flex:none;font-style:normal}
+.agent h4 i.y{background:var(--mint)}
+.agent h4 i.n{background:var(--short)}
+.agent li{padding-block:14px;border-bottom:1px solid var(--line-2);font-size:.94rem;color:var(--ink-2);display:grid;
+  grid-template-columns:auto minmax(0,1fr);gap:13px;align-items:start}
+.agent li:last-child{border-bottom:0}
+.agent li b{color:var(--ink);font-weight:600}
+.agent li .k{font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);padding-top:3px}
+.wal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-top:22px}
+.wal li{display:flex;align-items:center;gap:11px;padding:14px;border:1px solid var(--line);border-radius:12px;min-width:0;
+  background:rgba(151,252,228,.03);transition:transform .3s var(--ease),border-color .3s}
+.wal li:hover{transform:translateY(-3px);border-color:rgba(151,252,228,.34)}
+.wal img{width:26px;height:26px;object-fit:contain;flex:none}
+.wal b{font-size:.9rem;font-weight:560;min-width:0}
+.chains{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
+.chains span{display:flex;align-items:center;gap:9px;padding:9px 14px;border:1px solid var(--line-2);border-radius:999px;
+  font-size:.85rem;color:var(--ink-2)}
+.chains img{width:20px;height:20px;object-fit:contain}
+.chains em{font-style:normal;font-family:var(--fm);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+
+.faq{display:grid;gap:10px;margin-top:40px;max-width:900px}
+.q{border:1px solid var(--line);border-radius:13px;background:rgba(151,252,228,.025);overflow:hidden;transition:border-color .3s,background .3s}
+.q[open]{border-color:rgba(151,252,228,.4);background:rgba(151,252,228,.06)}
+.q summary{display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;font-size:1rem;font-weight:580;list-style:none}
+.q summary::-webkit-details-marker{display:none}
+.q summary::after{content:"";margin-left:auto;width:10px;height:10px;flex:none;border-right:1.8px solid var(--ink-3);
+  border-bottom:1.8px solid var(--ink-3);transform:rotate(45deg) translateY(-3px);transition:transform .3s var(--ease)}
+.q[open] summary::after{transform:rotate(-135deg) translateY(-3px);border-color:var(--mint)}
+.q p{padding:0 20px 19px;font-size:.94rem;color:var(--ink-2);max-width:76ch}
+
+.end{position:relative;padding-block:var(--pad);text-align:center;overflow:hidden}
+.end::before{content:"";position:absolute;left:50%;top:0;width:min(860px,110%);aspect-ratio:2.2/1;transform:translateX(-50%);
+  background:radial-gradient(circle at 50% 0,rgba(151,252,228,.2),transparent 66%);pointer-events:none}
+.end__in{position:relative;display:flex;flex-direction:column;align-items:center;gap:20px}
+.end p{color:var(--ink-2);max-width:46ch}
+
+.ftr{border-top:1px solid var(--line-2);padding-block:34px 28px;background:rgba(0,0,0,.28)}
+.ftr__in{display:flex;flex-wrap:wrap;gap:18px 34px;align-items:center}
+.ftr__nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:10px 24px}
+.ftr__nav a{font-size:.87rem;color:var(--ink-2)}
+.ftr__nav a:hover{color:var(--mint)}
+.ftr__note{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-2);display:flex;flex-wrap:wrap;gap:8px 26px;
+  font-size:.79rem;color:var(--ink-3)}
+
+@media (max-width:1040px){
+  .hero__in{grid-template-columns:1fr;gap:44px}
+  .term{max-width:600px;margin-inline:auto;width:100%}
+  .steps,.strats{grid-template-columns:1fr;max-width:560px}
+  .calc{grid-template-columns:1fr}
+  .calc__l{border-right:0;border-bottom:1px solid var(--line)}
+  .agent{grid-template-columns:1fr}
+  .agent__c+.agent__c{border-left:0;border-top:1px solid var(--line)}
+  .wal{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-*{ box-sizing:border-box; }
-html{ height:100%; scroll-behavior:smooth; }
-@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
-body{ margin:0; min-width:320px; height:100%; overflow:hidden; color:var(--text); background:var(--bg); font-family:var(--font); font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-a{ color:inherit; text-decoration:none; }
-button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
-img{ display:block; max-width:100%; }
-h1,h2,h3,p{ margin:0; }
-a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:10px; }
-.skip{ position:absolute; left:-999px; }
-.skip:focus{ left:12px; top:12px; z-index:120; padding:9px 15px; border-radius:10px; background:var(--cta); color:var(--cta-ink); font-weight:750; }
-.bg{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; background:
-  radial-gradient(1100px 700px at 82% 116%, var(--bg-2), transparent 60%),
-  radial-gradient(900px 620px at -6% -8%, var(--bg-2), transparent 58%); }
-.bg::before{ content:""; position:absolute; right:-14%; bottom:-30%; width:min(92vw,940px); aspect-ratio:1; border-radius:50%;
-  background:repeating-radial-gradient(circle at center, transparent 0 86px, var(--line) 86px 87px); opacity:.5; mask:radial-gradient(circle at center, #000 62%, transparent 72%); }
-.bg::after{ content:""; position:absolute; left:-10%; top:-16%; width:min(70vw,560px); aspect-ratio:1; border-radius:50%;
-  background:repeating-radial-gradient(circle at center, transparent 0 64px, var(--line) 64px 65px); opacity:.4; mask:radial-gradient(circle at center, #000 60%, transparent 72%); }
-.topbar{ position:relative; z-index:70; flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:13px clamp(16px,3.4vw,34px);
-  background:color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter:saturate(140%) blur(12px); -webkit-backdrop-filter:saturate(140%) blur(12px); border-bottom:1px solid var(--line); }
-.tb-left{ display:flex; align-items:center; gap:12px; min-width:0; }
-.hamb{ display:grid; place-items:center; width:40px; height:40px; flex:0 0 auto; position:relative; border:1px solid var(--line-2); border-radius:12px; background:var(--panel); color:var(--ink); transition:border-color .15s var(--ease); }
-.hamb:hover{ border-color:var(--accent); }
-.hamb .bar{ position:absolute; left:11px; right:11px; height:2px; border-radius:2px; background:currentColor; transition:transform .24s var(--ease), opacity .18s var(--ease); }
-.hamb .bar:nth-child(1){ top:14px; } .hamb .bar:nth-child(2){ top:19px; } .hamb .bar:nth-child(3){ top:24px; }
-body.drawer-open .hamb .bar:nth-child(1){ transform:translateY(5px) rotate(45deg); }
-body.drawer-open .hamb .bar:nth-child(2){ opacity:0; }
-body.drawer-open .hamb .bar:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
-.brand{ display:flex; align-items:center; gap:11px; min-width:0; }
-.brand-logo{ width:34px; height:34px; flex:0 0 auto; display:grid; place-items:center; border-radius:10px; background:var(--panel); box-shadow:inset 0 0 0 1px var(--line-2); }
-.brand-logo img{ width:22px; height:22px; border-radius:50%; }
-.brand-name{ font-size:19px; font-weight:820; letter-spacing:-0.03em; color:var(--ink); line-height:1.1; white-space:nowrap; }
-.tb-right{ display:flex; align-items:center; gap:9px; }
-.theme-toggle{ display:inline-flex; align-items:center; gap:2px; padding:3px; border-radius:999px; background:var(--field); box-shadow:inset 0 0 0 1px var(--line); }
-.theme-toggle button{ display:grid; place-items:center; width:30px; height:30px; border-radius:999px; color:var(--muted); transition:color .15s var(--ease), background-color .15s var(--ease); }
-.theme-toggle button svg{ width:15px; height:15px; }
-.theme-toggle button[aria-pressed="true"]{ color:var(--ink); background:var(--panel); box-shadow:0 2px 8px -3px rgba(0,0,0,.28); }
-.btn-app{ display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:11px; background:var(--panel); color:var(--ink); font-size:13.5px; font-weight:700; letter-spacing:-0.01em; box-shadow:inset 0 0 0 1px var(--line-2); transition:box-shadow .15s var(--ease), transform .15s var(--ease); white-space:nowrap; }
-.btn-app svg{ width:16px; height:16px; color:var(--muted); }
-.btn-app:hover{ box-shadow:inset 0 0 0 1px var(--accent); transform:translateY(-1px); }
-.btn-app:hover svg{ color:var(--accent-ink); }
-.scrim{ position:fixed; inset:0; z-index:80; background:rgba(10,14,17,.42); opacity:0; visibility:hidden; transition:opacity .28s var(--ease), visibility .28s var(--ease); }
-body.drawer-open .scrim{ opacity:1; visibility:visible; }
-.drawer{ position:fixed; z-index:90; top:0; left:0; height:100dvh; width:300px; max-width:86vw; display:flex; flex-direction:column; padding:16px 14px 16px; background:var(--panel); border-right:1px solid var(--line); box-shadow:var(--shadow-pop);
-  transform:translateX(-104%); transition:transform .3s var(--ease); overflow-y:auto; }
-body.drawer-open .drawer{ transform:translateX(0); }
-.drawer-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:2px 6px 8px; }
-.drawer-head .brand-name{ font-size:15px; }
-.drawer-close{ display:grid; place-items:center; width:34px; height:34px; border-radius:10px; color:var(--muted); }
-.drawer-close:hover{ color:var(--ink); background:var(--field); }
-.drawer-close svg{ width:17px; height:17px; }
-.nav-label{ margin:15px 12px 6px; font-size:10px; font-weight:750; letter-spacing:0.15em; text-transform:uppercase; color:var(--faint); }
-.nav-item{ display:flex; align-items:center; gap:12px; padding:9px 12px; border-radius:10px; color:var(--text); font-size:14px; font-weight:650; transition:color .15s var(--ease), background-color .15s var(--ease); }
-.nav-item .ni-ico{ width:18px; height:18px; flex:0 0 auto; color:var(--muted); }
-.nav-item.is-active{ color:var(--accent-ink); background:var(--accent-soft); }
-.nav-item.is-active .ni-ico{ color:var(--accent-ink); }
-.nav-item:hover{ color:var(--ink); background:var(--field); }
-.nav-group{ border-radius:10px; }
-.nav-group summary{ display:flex; align-items:center; gap:12px; padding:9px 12px; border-radius:10px; color:var(--text); font-size:14px; font-weight:650; cursor:pointer; list-style:none; transition:color .15s var(--ease), background-color .15s var(--ease); }
-.nav-group summary::-webkit-details-marker{ display:none; }
-.nav-group summary .ni-ico{ width:18px; height:18px; flex:0 0 auto; color:var(--muted); }
-.nav-group summary .chev{ width:15px; height:15px; margin-left:auto; color:var(--faint); transition:transform .2s var(--ease); }
-.nav-group summary:hover{ color:var(--ink); background:var(--field); }
-.nav-group[open] summary{ color:var(--ink); }
-.nav-group[open] summary .chev{ transform:rotate(180deg); }
-.nav-sub{ display:flex; flex-direction:column; gap:1px; padding:2px 0 8px 42px; }
-.nav-sub a{ display:flex; align-items:baseline; gap:7px; padding:6px 10px; border-radius:8px; color:var(--muted); font-size:12.5px; font-weight:550; transition:color .15s var(--ease), background-color .15s var(--ease); }
-.nav-sub a small{ color:var(--faint); font-size:10.5px; font-weight:500; }
-.nav-sub a:hover{ color:var(--accent-ink); background:var(--field); }
-.drawer-foot{ margin-top:auto; padding-top:13px; border-top:1px solid var(--line); }
-.disclose{ margin:8px 8px 0; font-size:11px; line-height:1.5; color:var(--muted); }
-.disclose strong{ color:var(--text); font-weight:750; }
-.fine{ margin:6px 8px 0; font-size:10.5px; line-height:1.45; color:var(--faint); }
-.app{ height:100dvh; display:flex; flex-direction:column; overflow:hidden; position:relative; z-index:1; }
-.wrap{ flex:1 1 auto; min-height:0; display:grid; place-items:center; overflow:hidden; }
-.stage{ width:100%; max-width:560px; max-height:100%; margin-inline:auto; padding:clamp(14px,3vh,36px) clamp(16px,3.4vw,26px); display:flex; flex-direction:column; align-items:center; text-align:center; }
-.lead{ margin:0 0 clamp(13px,2.2vh,20px); max-width:24ch; font-size:clamp(19px,2.5vw,27px); line-height:1.16; letter-spacing:-0.025em; font-weight:750; color:var(--ink); }
-.lead .hl{ color:var(--accent-ink); }
-.hero-chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:9px; margin-top:clamp(13px,2.2vh,18px); }
-.hchip{ display:inline-flex; align-items:baseline; gap:7px; padding:8px 13px; border-radius:12px; background:var(--panel); box-shadow:inset 0 0 0 1px var(--line); font-size:12px; font-weight:600; color:var(--muted); transition:box-shadow .15s var(--ease), color .15s var(--ease); }
-.hchip b{ color:var(--ink); font-family:var(--mono); font-size:12.5px; font-weight:650; font-variant-numeric:tabular-nums; }
-.hchip .ext{ color:var(--faint); font-size:10px; }
-a.hchip:hover{ box-shadow:inset 0 0 0 1px var(--accent); color:var(--text); }
-a.hchip:hover .ext{ color:var(--accent-ink); }
-.swap-card{ position:relative; width:min(480px,100%); border-radius:28px; background:var(--panel); padding:clamp(20px,4vw,30px); text-align:left; box-shadow:var(--shadow-card); }
-.card-head{ display:flex; align-items:center; justify-content:space-between; margin:2px 4px 17px; }
-.card-title{ font-size:15px; font-weight:800; letter-spacing:-0.02em; color:var(--ink); }
-.badge{ display:inline-flex; align-items:center; gap:6px; padding:5px 11px; border-radius:999px; color:var(--accent-ink); background:var(--accent-soft); font-size:10px; font-weight:750; letter-spacing:0.07em; text-transform:uppercase; }
-.badge i{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
-.field{ position:relative; padding:17px 18px 18px; border-radius:19px; background:var(--field); }
-.field + .field{ margin-top:6px; }
-.field-top{ display:flex; align-items:center; justify-content:space-between; }
-.field-label{ font-size:12px; font-weight:600; color:var(--muted); }
-.field-bal{ font-size:11px; font-weight:600; color:var(--faint); }
-.field-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:11px; min-width:0; }
-.amount{ min-width:0; }
-.amount b{ display:block; font-size:clamp(29px,5vw,38px); font-weight:750; line-height:1; letter-spacing:-0.02em; color:var(--ink); font-variant-numeric:tabular-nums; }
-.amount span{ display:block; margin-top:6px; font-size:11px; font-weight:600; color:var(--faint); }
-.token-pill{ display:inline-flex; align-items:center; gap:10px; flex:0 0 auto; padding:7px 12px 7px 8px; border-radius:999px; background:var(--panel); box-shadow:0 4px 14px -8px rgba(0,0,0,.4), inset 0 0 0 1px var(--line); transition:box-shadow .15s var(--ease); }
-.token-pill:hover{ box-shadow:0 6px 18px -8px rgba(0,0,0,.42), inset 0 0 0 1px var(--line-2); }
-.token-pill img{ width:26px; height:26px; flex:0 0 auto; border-radius:50%; }
-.token-meta{ display:flex; flex-direction:column; line-height:1.05; min-width:0; }
-.token-meta small{ font-size:9.5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--faint); }
-.token-meta b{ font-size:15px; font-weight:800; letter-spacing:-0.01em; color:var(--ink); white-space:nowrap; }
-.token-pill .chev{ width:14px; height:14px; flex:0 0 auto; color:var(--faint); }
-.reverse{ position:relative; z-index:2; display:grid; place-items:center; width:40px; height:40px; margin:-14px auto; border:4px solid var(--panel); border-radius:13px; background:var(--field-2); color:var(--muted); box-shadow:0 6px 16px -8px rgba(0,0,0,.4); transition:transform .28s var(--ease), color .15s var(--ease), background-color .15s var(--ease); }
-.reverse svg{ width:16px; height:16px; }
-.reverse:hover{ color:var(--cta-ink); background:var(--accent); transform:rotate(180deg); }
-.details-btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin-top:12px; padding:12px; border-radius:14px; background:var(--field); color:var(--muted); font-size:12px; font-weight:750; letter-spacing:0.06em; text-transform:uppercase; transition:color .15s var(--ease), background-color .15s var(--ease); }
-.details-btn svg{ width:14px; height:14px; transition:transform .2s var(--ease); }
-.details-btn:hover{ color:var(--ink); }
-.details-btn[aria-expanded="true"] svg{ transform:rotate(180deg); }
-.details{ overflow:hidden; max-height:0; opacity:0; transition:max-height .3s var(--ease), opacity .22s var(--ease), margin .3s var(--ease); }
-.details.open{ max-height:280px; opacity:1; margin-top:6px; }
-.d-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 8px; border-bottom:1px solid var(--line); }
-.d-row:last-child{ border-bottom:0; }
-.d-row span{ font-size:12.5px; font-weight:600; color:var(--muted); }
-.d-row b{ font-size:12.5px; font-weight:700; color:var(--text); }
-.d-row b.ok{ color:var(--accent-ink); }
-.d-row b.mono{ font-family:var(--mono); font-size:11px; }
-.cta{ display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; padding:16px; border-radius:16px; background:var(--cta); color:var(--cta-ink); font-size:15px; font-weight:800; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 16px 34px -16px rgba(0,0,0,.5); transition:background-color .15s var(--ease), transform .15s var(--ease); }
-.cta svg{ width:16px; height:16px; }
-.cta:hover{ background:var(--cta-hover); transform:translateY(-1px); }
-.card-note{ margin:13px 4px 0; font-size:11px; line-height:1.5; color:var(--faint); text-align:center; }
-.card-note a{ color:var(--muted); text-decoration:underline; text-decoration-color:var(--line-2); text-underline-offset:2px; }
-.card-note a:hover{ color:var(--accent-ink); }
-@media (max-width:560px){
-  .brand-name{ font-size:16px; } .btn-app span{ display:none; } .btn-app{ padding:9px 11px; }
-  .stage{ padding:12px 16px; }
-  .lead{ font-size:clamp(18px,5.5vw,24px); margin-bottom:14px; }
-  .swap-card{ padding:18px; } .field{ padding:14px 15px 15px; } .amount b{ font-size:29px; }
-  .hero-chips{ margin-top:12px; }
+@media (max-width:820px){
+  .burger{display:grid}
+  .nav{position:fixed;inset:74px 0 auto;margin:0;background:rgba(6,21,18,.97);backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);padding:8px var(--gut) 22px;opacity:0;transform:translateY(-10px);
+    pointer-events:none;transition:.3s var(--ease)}
+  .nav.open{opacity:1;transform:none;pointer-events:auto}
+  .nav ul{flex-direction:column;align-items:stretch;gap:0}
+  .nav a{display:block;padding:15px 0;border-bottom:1px solid var(--line-2);font-size:1rem}
+  .hdr .btn--sm{display:none}
 }
-@media (max-height:700px){ .lead{ font-size:clamp(17px,4.5vw,21px); margin-bottom:10px; } .hero-chips{ display:none; } }
-@media (max-height:600px){ .field{ padding:12px 15px 13px; } .amount b{ font-size:26px; } .details-btn{ margin-top:8px; padding:9px; } .cta{ padding:14px; margin-top:8px; } }
-@media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
-.stage.is-hero{ max-width:780px; }
-.hero{ display:flex; flex-direction:column; align-items:center; text-align:center; }
-.hero-h2{ margin:0; max-width:17ch; font-size:clamp(31px,5.8vw,56px); line-height:1.04; letter-spacing:-0.035em; font-weight:830; color:var(--ink); }
-.hero-h2 .hl{ color:var(--accent-ink); }
-.hero-sub{ margin:clamp(16px,2.8vh,23px) auto 0; max-width:54ch; font-size:clamp(15px,1.65vw,18px); line-height:1.58; color:var(--muted); font-weight:450; }
-.hero-cta{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin-top:clamp(22px,3.6vh,32px); }
-.hero-cta .cta{ margin-top:0; text-transform:none; letter-spacing:0.005em; padding:15px 26px; font-size:15px; border-radius:14px; }
-.hero-cta .cta-ghost{ background:var(--panel); color:var(--ink); box-shadow:inset 0 0 0 1px var(--line-2); }
-.hero-cta .cta-ghost:hover{ background:var(--field); box-shadow:inset 0 0 0 1px var(--accent); transform:translateY(-1px); }
-@media (max-width:560px){ .hero-cta{ flex-direction:column; width:100%; max-width:340px; } .hero-cta .cta{ width:100%; } }
-@media (max-height:640px){ .hero-sub{ font-size:14px; margin-top:12px; } .hero-chips{ display:none; } }
-  </style>
-  <script>document.documentElement.classList.add('js')</script>
+@media (max-width:620px){
+  .term__grid{grid-template-columns:1fr}
+  .term__chart{border-right:0;border-bottom:1px solid var(--line-2)}
+  .pos{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .wal{grid-template-columns:1fr}
+  .bars{height:126px}
+}
+</style>
 </head>
 <body>
-  <a class="skip" href="#route-preview">Skip to preview</a>
-  <div class="bg" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
 
-  <div class="app">
-  <header class="topbar">
-    <div class="tb-left">
-      <button class="hamb" type="button" id="hamb" aria-label="Open navigation" aria-controls="drawer" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-      <div class="brand"><span class="brand-logo"><img src="favicon.png" width="22" height="22" alt="Hyperliquid Bot logo"></span><h1 class="brand-name">Hyperliquid Bot</h1></div>
-    </div>
-    <div class="tb-right">
-      <div class="theme-toggle" role="group" aria-label="Color theme">
-        <button type="button" id="theme-light" aria-pressed="true" aria-label="Light theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
-        <button type="button" id="theme-dark" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a6.5 6.5 0 1 0 10.5 10.5z"/></svg></button>
-      </div>
-      <a class="btn-app" href="dashboard/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M16 11h2"/></svg><span>Open app</span></a>
-    </div>
-  </header>
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
 
-  <div class="scrim" id="scrim" tabindex="-1"></div>
-  <aside class="drawer" id="drawer" aria-label="Primary" aria-hidden="true">
-    <div class="drawer-head">
-      <div class="brand"><span class="brand-logo"><img src="favicon.png" width="22" height="22" alt=""></span><span class="brand-name">Hyperliquid Bot</span></div>
-      <button class="drawer-close" type="button" id="drawer-close" aria-label="Close navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    </div>
-    <nav aria-label="Sections">
-      <p class="nav-label">Bridge</p>
-      <a class="nav-item is-active" href="#route-preview" aria-current="page"><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 10h11l-3-3M17 14H6l3 3"/></svg>Route preview</a>
-      <p class="nav-label">Understand</p>
-      <details class="nav-group" open><summary><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>Platform foundations<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-sub"><a href="https://hyperfoundation.org/" target="_blank" rel="noopener noreferrer">Hyperliquid Foundation <small>Official network and ecosystem</small></a><a href="https://hyperliquid.gitbook.io/hyperliquid-docs" target="_blank" rel="noopener noreferrer">Hyperliquid Docs <small>Network and API overview</small></a><a href="https://github.com/hyperliquid-dex/hyperliquid-python-sdk" target="_blank" rel="noopener noreferrer">Python SDK <small>Official Python trading SDK</small></a><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore" target="_blank" rel="noopener noreferrer">HyperCore <small>Core order-book execution layer</small></a></div></details>
-      <p class="nav-label">Markets &amp; data</p>
-      <details class="nav-group"><summary><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>Live network data<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-sub"><a href="https://app.hyperliquid.xyz/trade" target="_blank" rel="noopener noreferrer">Trading Interface <small>Open official trading interface</small></a><a href="https://app.hyperliquid.xyz/explorer" target="_blank" rel="noopener noreferrer">Hyperliquid Explorer <small>Inspect blocks and accounts</small></a><a href="https://www.coingecko.com/en/coins/hyperliquid" target="_blank" rel="noopener noreferrer">HYPE on CoinGecko <small>Track HYPE market data</small></a><a href="https://defillama.com/protocol/hyperliquid" target="_blank" rel="noopener noreferrer">Hyperliquid on DeFiLlama <small>TVL fees and volume</small></a></div></details>
-      <p class="nav-label">Guides</p>
-      <details class="nav-group"><summary><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>Build trading automation<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-sub"><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/exchange-endpoint" target="_blank" rel="noopener noreferrer">Exchange Endpoint <small>Place orders and cancels</small></a><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint" target="_blank" rel="noopener noreferrer">Info Endpoint <small>Query books fills state</small></a><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/websocket/subscriptions" target="_blank" rel="noopener noreferrer">WebSocket Subscriptions <small>Stream real-time market events</small></a><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/rate-limits-and-user-limits" target="_blank" rel="noopener noreferrer">API Rate Limits <small>Respect API usage limits</small></a></div></details>
-      <p class="nav-label">Safety</p>
-      <details class="nav-group"><summary><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>Keys risk and controls<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-sub"><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/nonces-and-api-wallets" target="_blank" rel="noopener noreferrer">API Wallets and Nonces <small>Protect automated signing keys</small></a><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/audits" target="_blank" rel="noopener noreferrer">Security Audits <small>Review bridge audit reports</small></a><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/bug-bounty-program" target="_blank" rel="noopener noreferrer">Bug Bounty <small>Report protocol vulnerabilities responsibly</small></a><a href="https://hyperliquid.gitbook.io/hyperliquid-docs/trading/liquidations" target="_blank" rel="noopener noreferrer">Liquidations <small>Understand margin closeout mechanics</small></a></div></details>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#strategies">Strategies</a></li>
+        <li><a href="#calculator">Calculator</a></li>
+        <li><a href="#access">Access</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
     </nav>
-    <div class="drawer-foot">
-      <p class="disclose"><strong>Independent dashboard.</strong> Not affiliated with any protocol or issuer named here.</p>
-      <p class="fine">Live figures come from public third-party sources and change. Educational reference only.</p>
-    </div>
-  </aside>
 
-  <div class="wrap">
-    <main class="stage is-hero">
-      <div class="hero" id="app">
-        <h2 class="hero-h2">Automate <span class="hl">Hyperliquid trading</span>, 24/7</h2>
-        <p class="hero-sub">Build automated strategies with onchain order books, real-time data, and API-wallet signing for perpetual and spot markets.</p>
-        <div class="hero-cta">
-          <a class="cta cta-primary" href="dashboard/" target="_blank" rel="noopener noreferrer">Enter Dashboard <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-          <a class="cta cta-ghost" href="https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api" target="_blank" rel="noopener noreferrer">Read the docs</a>
+    <a class="btn btn--p btn--sm" href="dashboard/">Enter Dashboard</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap hero__in">
+      <div>
+        <span class="chip-hl rv"><i aria-hidden="true"></i>Runs on Hyperliquid</span>
+        <h1 class="rv d1"><em>Hyperliquid</em><br>Trading Bot</h1>
+        <p class="lead rv d2">Perp strategies that work the order book around the clock — driven by an API wallet that can trade your account but can never withdraw from it.</p>
+
+        <div class="hero__cta rv d3">
+          <a class="btn btn--p" href="dashboard/">Enter Dashboard
+            <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn--g" href="#how">How it works</a>
+        </div>
+
+        <div class="ticks rv d3">
+          <span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Trade-only API wallet</span>
+          <span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>USDC stays in your account</span>
+          <span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Revoke in one click</span>
         </div>
       </div>
-      <div class="hero-chips">
-        <a class="hchip" href="https://www.coingecko.com/en/coins/hyperliquid" target="_blank" rel="noopener noreferrer">HYPE price <b id="sig0">—</b> <span class="ext" aria-hidden="true">↗</span></a>
-          <a class="hchip" href="https://defillama.com/chain/hyperliquid-l1" target="_blank" rel="noopener noreferrer">Chain TVL <b id="sig1">—</b> <span class="ext" aria-hidden="true">↗</span></a>
-          <a class="hchip" href="https://defillama.com/protocol/hyperliquid" target="_blank" rel="noopener noreferrer">Protocol TVL <b id="sig2">—</b> <span class="ext" aria-hidden="true">↗</span></a>
+
+      <div class="term rv d2">
+        <div class="term__bar">
+          <span class="term__pair">BTC-PERP</span>
+          <span class="term__px">64,182.0</span>
+          <span class="term__tag">20x cross · funding 0.0091%</span>
+        </div>
+
+        <div class="term__grid">
+          <div class="term__chart">
+            <svg viewBox="0 0 320 190" role="img" aria-label="BTC perp price with the bot's entries">
+              <defs>
+                <linearGradient id="ln" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#50D2C1"/><stop offset="1" stop-color="#97FCE4"/></linearGradient>
+                <linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#50D2C1" stop-opacity=".26"/><stop offset="1" stop-color="#50D2C1" stop-opacity="0"/></linearGradient>
+              </defs>
+              <g stroke="rgba(151,252,228,.06)"><path d="M0 40h320M0 80h320M0 120h320M0 160h320"/></g>
+              <path fill="url(#fl)" d="M6 150 L40 138 L74 146 L108 116 L142 124 L176 92 L210 100 L244 66 L278 74 L314 38 L314 182 L6 182 Z"/>
+              <path class="draw" d="M6 150 L40 138 L74 146 L108 116 L142 124 L176 92 L210 100 L244 66 L278 74 L314 38"
+                    fill="none" stroke="url(#ln)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <g><circle cx="108" cy="116" r="4" fill="#2FE3A8"/><circle cx="210" cy="100" r="4" fill="#2FE3A8"/><circle cx="244" cy="66" r="4" fill="#ED7088"/></g>
+              <path d="M0 66h320" stroke="rgba(151,252,228,.35)" stroke-width="1" stroke-dasharray="4 5"/>
+              <text x="6" y="60" font-family="GeistMono,monospace" font-size="9" fill="#97FCE4">TP 64,800</text>
+            </svg>
+          </div>
+
+          <div class="book">
+            <div class="book__h"><span>Price</span><span>Size</span></div>
+            <ul>
+              <li class="ask"><i style="width:38%"></i><span>64,198</span><span>1.42</span></li>
+              <li class="ask"><i style="width:56%"></i><span>64,194</span><span>2.08</span></li>
+              <li class="ask"><i style="width:24%"></i><span>64,190</span><span>0.91</span></li>
+            </ul>
+            <div class="book__mid"><span>64,182.0</span><span>spread 2.0</span></div>
+            <ul>
+              <li class="bid"><i style="width:62%"></i><span>64,178</span><span>2.34</span></li>
+              <li class="bid"><i style="width:35%"></i><span>64,174</span><span>1.27</span></li>
+              <li class="bid"><i style="width:48%"></i><span>64,170</span><span>1.80</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pos">
+          <div><span>Position</span><b class="up">LONG 0.42</b></div>
+          <div><span>Entry</span><b>63,410</b></div>
+          <div><span>Liq. price</span><b>58,240</b></div>
+          <div><span>uPnL</span><b class="up">+$324</b></div>
+        </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </section>
+
+  <div class="rail" aria-hidden="true">
+    <div class="rail__in">
+      <div class="rail__set">
+        <span class="tk"><b>BTC</b><i>64,182</i><u class="up">+1.84%</u><em>fnd 0.0091%</em></span>
+        <span class="tk"><b>ETH</b><i>2,481</i><u class="up">+2.31%</u><em>fnd 0.0104%</em></span>
+        <span class="tk"><b>SOL</b><i>168.4</i><u class="dn">−0.72%</u><em>fnd −0.0032%</em></span>
+        <span class="tk"><b>HYPE</b><i>31.86</i><u class="up">+4.12%</u><em>fnd 0.0128%</em></span>
+        <span class="tk"><b>ARB</b><i>1.142</i><u class="up">+3.05%</u><em>fnd 0.0067%</em></span>
+        <span class="tk"><b>AVAX</b><i>34.28</i><u class="up">+1.47%</u><em>fnd 0.0055%</em></span>
+        <span class="tk"><b>LINK</b><i>17.94</i><u class="dn">−0.55%</u><em>fnd −0.0011%</em></span>
+      </div>
+      <div class="rail__set">
+        <span class="tk"><b>BTC</b><i>64,182</i><u class="up">+1.84%</u><em>fnd 0.0091%</em></span>
+        <span class="tk"><b>ETH</b><i>2,481</i><u class="up">+2.31%</u><em>fnd 0.0104%</em></span>
+        <span class="tk"><b>SOL</b><i>168.4</i><u class="dn">−0.72%</u><em>fnd −0.0032%</em></span>
+        <span class="tk"><b>HYPE</b><i>31.86</i><u class="up">+4.12%</u><em>fnd 0.0128%</em></span>
+        <span class="tk"><b>ARB</b><i>1.142</i><u class="up">+3.05%</u><em>fnd 0.0067%</em></span>
+        <span class="tk"><b>AVAX</b><i>34.28</i><u class="up">+1.47%</u><em>fnd 0.0055%</em></span>
+        <span class="tk"><b>LINK</b><i>17.94</i><u class="dn">−0.55%</u><em>fnd −0.0011%</em></span>
+      </div>
+    </div>
   </div>
 
-  <script>
-  (function(){
-    "use strict";
-    var $=function(id){ return document.getElementById(id); };
-    var root=document.documentElement, tl=$("theme-light"), td=$("theme-dark");
-    function applyTheme(t){ if(t==="dark"){ root.setAttribute("data-theme","dark"); } else { root.removeAttribute("data-theme"); } if(tl) tl.setAttribute("aria-pressed", String(t!=="dark")); if(td) td.setAttribute("aria-pressed", String(t==="dark")); }
-    var saved=null; try{ saved=localStorage.getItem("hyperliqui-theme"); }catch(e){}
-    if(saved) applyTheme(saved);
-    function setTheme(t){ applyTheme(t); try{ localStorage.setItem("hyperliqui-theme", t); }catch(e){} }
-    if(tl) tl.addEventListener("click", function(){ setTheme("light"); });
-    if(td) td.addEventListener("click", function(){ setTheme("dark"); });
-    var body=document.body, hamb=$("hamb"), scrim=$("scrim"), drawer=$("drawer"), dclose=$("drawer-close");
-    function openD(){ body.classList.add("drawer-open"); hamb.setAttribute("aria-expanded","true"); drawer.setAttribute("aria-hidden","false"); }
-    function closeD(){ body.classList.remove("drawer-open"); hamb.setAttribute("aria-expanded","false"); drawer.setAttribute("aria-hidden","true"); }
-    if(hamb) hamb.addEventListener("click", function(){ body.classList.contains("drawer-open")?closeD():openD(); });
-    if(scrim) scrim.addEventListener("click", closeD);
-    if(dclose) dclose.addEventListener("click", closeD);
-    document.addEventListener("keydown", function(e){ if(e.key==="Escape" && body.classList.contains("drawer-open")) closeD(); });
-    if(drawer) drawer.addEventListener("click", function(e){ if(e.target.closest("a")) closeD(); });
+  <section class="sec" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec__h">
+        <span class="kick rv">Setup</span>
+        <h2 id="how-h" class="rv d1">Three steps, no deposit to us</h2>
+        <p class="lead rv d2">Your USDC never leaves your Hyperliquid account. The bot gets a key that can trade it and nothing else.</p>
+      </div>
 
-    var db=$("details-btn"), dp=$("details");
-    if(db&&dp) db.addEventListener("click", function(){ var open=dp.classList.toggle("open"); db.setAttribute("aria-expanded", String(open)); db.firstChild.textContent = open?"Hide details ":"Show details "; });
-    function money(n){ if(n>=1e9) return "$"+(n/1e9).toFixed(2)+"B"; if(n>=1e6) return "$"+(n/1e6).toFixed(1)+"M"; if(n>=1e3) return "$"+(n/1e3).toFixed(0)+"K"; return "$"+n.toFixed(0); }
-    function gwei(g){ return (g>=0.1?g.toFixed(2):(g>=0.001?g.toFixed(3):Number(g.toPrecision(2)).toString()))+" gwei"; }
-    function grab(url,opt){ var c="AbortController" in window ? new AbortController():null, t=c?setTimeout(function(){c.abort();},7000):null; var o=opt||{}; if(c) o.signal=c.signal; return fetch(url,o).then(function(r){ if(!r.ok) throw 0; return r.json(); }).finally(function(){ if(t) clearTimeout(t); }); }
-    grab("https://coins.llama.fi/prices/current/coingecko:hyperliquid").then(function(j){ var c=j&&j.coins&&j.coins["coingecko:hyperliquid"], v=c&&Number(c.price); if(isFinite(v)&&v>0) $("sig0").textContent="$"+v.toLocaleString("en-US",{maximumFractionDigits:2}); }).catch(function(){});
-    grab("https://api.llama.fi/v2/historicalChainTvl/Hyperliquid%20L1").then(function(a){ if(!a||!a.length) return; var v=Number(a[a.length-1].tvl); if(isFinite(v)&&v>0) $("sig1").textContent=money(v); }).catch(function(){});
-    grab("https://api.llama.fi/protocol/hyperliquid").then(function(j){ var a=j&&j.tvl; if(!a||!a.length) return; var last=a[a.length-1], v=Number(last.totalLiquidityUSD!=null?last.totalLiquidityUSD:last.tvl); if(isFinite(v)&&v>0) $("sig2").textContent=money(v); }).catch(function(){});
-  })();
-  </script>
+      <ol class="steps">
+        <li class="step rv">
+          <span class="step__n">STEP 01</span>
+          <h3>Connect your wallet</h3>
+          <p>MetaMask, Rabby, WalletConnect or a hardware device — the same wallet you already use on Hyperliquid. <b>No account, no email.</b></p>
+        </li>
+        <li class="step rv d1">
+          <span class="step__n">STEP 02</span>
+          <h3>Approve an API wallet</h3>
+          <p>One signature creates a named agent wallet with an expiry you choose. It can <b>place and cancel orders</b> — it cannot withdraw.</p>
+        </li>
+        <li class="step rv d2">
+          <span class="step__n">STEP 03</span>
+          <h3>Pick a strategy</h3>
+          <p>Set the market, the leverage and the size cap. The bot works the book from there and <b>stops the moment you revoke</b>.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="strategies" aria-labelledby="st-h">
+    <div class="wrap">
+      <div class="sec__h">
+        <span class="kick rv">Strategies</span>
+        <h2 id="st-h" class="rv d1">Three ways to work a perp market</h2>
+        <p class="lead rv d2">Built around what a perp actually gives you: a live order book, funding every hour, and leverage you control.</p>
+      </div>
+
+      <div class="strats">
+        <article class="st rv">
+          <div class="st__t"><h3>Grid</h3><span class="st__tag">Range</span></div>
+          <div class="st__fig">
+            <svg viewBox="0 0 250 92" role="img" aria-label="Grid orders across a price range">
+              <g stroke="rgba(151,252,228,.1)"><path d="M8 24h234M8 42h234M8 60h234M8 76h234"/></g>
+              <path class="sk" style="--len:520" d="M10 62 44 30 78 68 112 34 146 70 182 36 216 64 244 42" fill="none" stroke="#97FCE4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <g><circle cx="44" cy="30" r="4" fill="#ED7088"/><circle cx="78" cy="68" r="4" fill="#2FE3A8"/><circle cx="112" cy="34" r="4" fill="#ED7088"/><circle cx="146" cy="70" r="4" fill="#2FE3A8"/><circle cx="182" cy="36" r="4" fill="#ED7088"/></g>
+            </svg>
+          </div>
+          <p>Ladders limit orders across a band and re-arms each rung after a fill. Chop between the levels becomes the return instead of the problem.</p>
+        </article>
+
+        <article class="st rv d1">
+          <div class="st__t"><h3>Funding</h3><span class="st__tag">Neutral</span></div>
+          <div class="st__fig">
+            <svg viewBox="0 0 250 92" role="img" aria-label="Funding payments collected each hour">
+              <path d="M8 50h234" stroke="rgba(151,252,228,.22)" stroke-width="1"/>
+              <g fill="#2FE3A8">
+                <rect x="20" y="34" width="10" height="16" rx="2"/><rect x="46" y="28" width="10" height="22" rx="2"/>
+                <rect x="72" y="38" width="10" height="12" rx="2"/><rect x="98" y="24" width="10" height="26" rx="2"/>
+                <rect x="150" y="30" width="10" height="20" rx="2"/><rect x="176" y="22" width="10" height="28" rx="2"/>
+                <rect x="202" y="32" width="10" height="18" rx="2"/><rect x="228" y="26" width="10" height="24" rx="2"/>
+              </g>
+              <rect x="124" y="50" width="10" height="14" rx="2" fill="#ED7088"/>
+              <path class="sk" style="--len:260" d="M12 78 C60 74, 120 70, 242 60" fill="none" stroke="#97FCE4" stroke-width="2" stroke-linecap="round"/>
+              <text x="8" y="18" font-family="GeistMono,monospace" font-size="8" fill="#5B7C74">FUNDING / HOUR</text>
+            </svg>
+          </div>
+          <p>Holds the side that gets paid while funding stays positive for it, and steps aside when the rate flips against the position.</p>
+        </article>
+
+        <article class="st rv d2">
+          <div class="st__t"><h3>Momentum</h3><span class="st__tag">Trend</span></div>
+          <div class="st__fig">
+            <svg viewBox="0 0 250 92" role="img" aria-label="Momentum entry with a trailing stop">
+              <g fill="rgba(151,252,228,.14)">
+                <rect x="16" y="66" width="9" height="18" rx="2"/><rect x="42" y="60" width="9" height="24" rx="2"/>
+                <rect x="68" y="64" width="9" height="20" rx="2"/><rect x="94" y="52" width="9" height="32" rx="2"/>
+                <rect x="120" y="42" width="9" height="42" rx="2"/><rect x="146" y="34" width="9" height="50" rx="2"/>
+                <rect x="172" y="26" width="9" height="58" rx="2"/><rect x="198" y="18" width="9" height="66" rx="2"/>
+              </g>
+              <path d="M8 56h234" stroke="rgba(237,112,136,.4)" stroke-dasharray="4 5"/>
+              <path class="sk" style="--len:340" d="M12 72 46 66 70 70 96 56 122 46 148 38 174 30 200 22 238 10" fill="none" stroke="#2FE3A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p>Enters on confirmed strength with a size the margin can carry, then trails the stop so the give-back at the top stays small.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="calculator" aria-labelledby="calc-h">
+    <div class="wrap">
+      <div class="sec__h">
+        <span class="kick rv">Calculator</span>
+        <h2 id="calc-h" class="rv d1">Model a scenario before you run one</h2>
+        <p class="lead rv d2">Account equity, the result you expect per month, and the leverage that multiplies both directions.</p>
+      </div>
+
+      <div class="calc rv d1">
+        <div class="calc__l">
+          <div class="fld">
+            <div class="fld__h"><label for="dep">Account equity</label><output id="depOut" for="dep">$5,000</output></div>
+            <input type="range" id="dep" min="100" max="50000" step="100" value="5000">
+          </div>
+          <div class="fld">
+            <div class="fld__h"><label for="ret">Monthly result, unleveraged</label><output id="retOut" for="ret">2.0%</output></div>
+            <input type="range" id="ret" min="-3" max="8" step="0.5" value="2">
+          </div>
+          <div class="fld">
+            <div class="fld__h"><label for="lev">Leverage</label><output id="levOut" for="lev">2x</output></div>
+            <input type="range" id="lev" min="1" max="10" step="1" value="2">
+          </div>
+          <div class="fld">
+            <div class="fld__h"><label>Horizon</label></div>
+            <div class="segs" id="segs" role="group" aria-label="Horizon">
+              <button class="seg" type="button" data-m="3" aria-pressed="false">3 months</button>
+              <button class="seg" type="button" data-m="6" aria-pressed="false">6 months</button>
+              <button class="seg" type="button" data-m="12" aria-pressed="true">12 months</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc__r">
+          <div>
+            <p class="calc__lbl">Projected equity</p>
+            <p class="calc__out">
+              <span class="calc__big" id="total">$8,009</span>
+              <span class="calc__delta" id="delta">+$3,009 · +60.1%</span>
+            </p>
+          </div>
+
+          <div>
+            <ul class="bars" id="bars" aria-hidden="true"></ul>
+            <p class="bars__x"><span id="xa">Month 1</span><span id="xb">Month 12</span></p>
+          </div>
+
+          <p class="warn">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.6 18.4 17H1.6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 8v3.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="10" cy="14.4" r="1" fill="currentColor"/></svg>
+            <span>Compounding math on a fixed rate — an illustration, not a forecast. Leverage scales losses the same way it scales gains, and a move against the position can liquidate it.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="access" aria-labelledby="ag-h">
+    <div class="wrap">
+      <div class="sec__h">
+        <span class="kick rv">Access</span>
+        <h2 id="ag-h" class="rv d1">What the bot's key can and cannot do</h2>
+        <p class="lead rv d2">Hyperliquid lets you approve an API wallet — a named key that acts for your account inside the exchange, with a limit on what it may touch.</p>
+      </div>
+
+      <div class="agent rv">
+        <div class="agent__c">
+          <h4><i class="y" aria-hidden="true"></i>The API wallet can</h4>
+          <ul>
+            <li><span class="k">01</span><span>Place, modify and cancel <b>orders</b> on the markets you enable</span></li>
+            <li><span class="k">02</span><span>Open and close <b>positions</b> within the size and leverage you set</span></li>
+            <li><span class="k">03</span><span>Run on a schedule you choose, with an <b>expiry date</b> on the approval</span></li>
+          </ul>
+        </div>
+        <div class="agent__c">
+          <h4><i class="n" aria-hidden="true"></i>It cannot</h4>
+          <ul>
+            <li><span class="k">01</span><span><b>Withdraw</b> USDC or move funds off Hyperliquid</span></li>
+            <li><span class="k">02</span><span>Send your balance to <b>another address</b></span></li>
+            <li><span class="k">03</span><span>Touch your <b>seed phrase</b> — it never sees your main key</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <ul class="wal">
+        <li class="rv"><img src="assets/wallets/metamask.svg" alt="" width="26" height="26" loading="lazy"><b>MetaMask</b></li>
+        <li class="rv"><img src="assets/wallets/rabby.svg" alt="" width="26" height="26" loading="lazy"><b>Rabby</b></li>
+        <li class="rv d1"><img src="assets/wallets/walletconnect.svg" alt="" width="26" height="26" loading="lazy"><b>WalletConnect</b></li>
+        <li class="rv d1"><img src="assets/wallets/ledger.png" alt="" width="26" height="26" loading="lazy"><b>Ledger</b></li>
+        <li class="rv"><img src="assets/wallets/coinbase.png" alt="" width="26" height="26" loading="lazy"><b>Coinbase</b></li>
+        <li class="rv"><img src="assets/wallets/okx.png" alt="" width="26" height="26" loading="lazy"><b>OKX</b></li>
+        <li class="rv d1"><img src="assets/wallets/trust.png" alt="" width="26" height="26" loading="lazy"><b>Trust</b></li>
+        <li class="rv d1"><img src="assets/wallets/trezor.svg" alt="" width="26" height="26" loading="lazy"><b>Trezor</b></li>
+      </ul>
+
+      <div class="chains rv d1">
+        <em>USDC arrives from</em>
+        <span><img src="assets/networks/arbitrum.svg" alt="" width="20" height="20" loading="lazy">Arbitrum</span>
+        <span><img src="assets/networks/ethereum.png" alt="" width="20" height="20" loading="lazy">Ethereum</span>
+        <span><img src="assets/networks/base.svg" alt="" width="20" height="20" loading="lazy">Base</span>
+        <span><img src="assets/networks/polygon.svg" alt="" width="20" height="20" loading="lazy">Polygon</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="sec__h">
+        <span class="kick rv">FAQ</span>
+        <h2 id="faq-h" class="rv d1">Short answers</h2>
+      </div>
+
+      <div class="faq">
+        <details class="q rv"><summary>What is a Hyperliquid trading bot?</summary>
+          <p>Software that trades perps on Hyperliquid for you. It watches the order book and funding, then places orders through an API wallet you approved — your USDC stays in your own Hyperliquid account the whole time.</p></details>
+        <details class="q rv"><summary>Does the bot hold my funds?</summary>
+          <p>No. There is no deposit address here. You fund your Hyperliquid account as usual, and the bot only holds a trade-only key that cannot withdraw or transfer your balance out.</p></details>
+        <details class="q rv"><summary>How do I stop it?</summary>
+          <p>Pause halts new orders immediately. Revoking the API wallet ends the bot's access entirely — after that it cannot place a single order, with no request to us.</p></details>
+        <details class="q rv"><summary>Can I lose money?</summary>
+          <p>Yes. Perps are leveraged: a move against a position is amplified, and past a point it liquidates. Size caps and stops limit how large a mistake gets — they cannot rule one out.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="end">
+    <div class="wrap end__in">
+      <span class="kick rv">Ready when you are</span>
+      <h2 class="rv d1">Put the order book on autopilot</h2>
+      <p class="rv d2">Approve a trade-only key, pick a strategy, and let it work the market while your funds stay where they are.</p>
+      <p class="rv d3">
+        <a class="btn btn--p" href="dashboard/">Enter Dashboard
+          <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__in">
+      <span class="brand"><b>Meridian</b><span>bot for hyperliquid</span></span>
+      <nav class="ftr__nav" aria-label="Footer">
+        <a href="#how">How it works</a><a href="#strategies">Strategies</a><a href="#calculator">Calculator</a>
+        <a href="#access">Access</a><a href="#faq">FAQ</a><a href="dashboard/">Dashboard</a>
+      </nav>
+    </div>
+    <div class="ftr__note">
+      <span>Independent bot for the Hyperliquid exchange — not affiliated with Hyperliquid.</span>
+      <span>Perpetual futures are leveraged and can lose more than a position's margin. Not investment advice.</span>
+      <span>© 2026 Meridian</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ hdr.classList.toggle('stuck', window.scrollY > 10); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  burger.addEventListener('click', function(){
+    var open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('open', !open);
+  });
+  nav.addEventListener('click', function(e){
+    if (e.target.tagName === 'A'){ burger.setAttribute('aria-expanded','false'); nav.classList.remove('open'); }
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.14});
+    document.querySelectorAll('.rv, .st').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  var dep = document.getElementById('dep'), ret = document.getElementById('ret'), lev = document.getElementById('lev'),
+      depOut = document.getElementById('depOut'), retOut = document.getElementById('retOut'), levOut = document.getElementById('levOut'),
+      total = document.getElementById('total'), delta = document.getElementById('delta'),
+      bars = document.getElementById('bars'), xa = document.getElementById('xa'), xb = document.getElementById('xb'),
+      months = 12;
+
+  var money = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+  var paint = function(el){ el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%'); };
+
+  var render = function(){
+    var d = Number(dep.value), r = Number(ret.value) / 100, L = Number(lev.value);
+    depOut.textContent = money(d);
+    retOut.textContent = (r * 100).toFixed(1) + '%';
+    levOut.textContent = L + 'x';
+
+    var rate = r * L, series = [], v = d, wiped = false;
+    for (var i = 1; i <= months; i++){
+      v = v * (1 + rate);
+      if (v <= 0){ v = 0; wiped = true; }
+      series.push(v);
+    }
+    var end = series[series.length - 1];
+
+    total.textContent = money(end);
+    total.style.color = end >= d ? 'var(--mint)' : 'var(--short)';
+    var diff = end - d;
+    delta.textContent = wiped ? 'account wiped out'
+      : (diff >= 0 ? '+' : '−') + money(Math.abs(diff)) + ' · ' + (diff >= 0 ? '+' : '−') + Math.abs(diff / d * 100).toFixed(1) + '%';
+
+    var maxV = Math.max.apply(null, series.concat([d]));
+    var minV = Math.min.apply(null, series.concat([d]));
+    var span = Math.max(maxV - minV, 1);
+    bars.innerHTML = '';
+    series.forEach(function(val){
+      var li = document.createElement('li');
+      li.innerHTML = '<i style="height:' + (10 + ((val - minV) / span) * 86).toFixed(1) + '%"></i>';
+      bars.appendChild(li);
+    });
+    xa.textContent = 'Month 1';
+    xb.textContent = 'Month ' + months;
+  };
+
+  [dep, ret, lev].forEach(function(el){
+    paint(el);
+    el.addEventListener('input', function(){ paint(el); render(); });
+  });
+
+  document.querySelectorAll('.seg').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.seg').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      b.setAttribute('aria-pressed','true');
+      months = Number(b.getAttribute('data-m'));
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>
