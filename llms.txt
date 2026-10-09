@@ -1,0 +1,3 @@
+# Hyperliquid Bot
+
+A guide to the Hyperliquid Bot: how automated strategies connect via API or SDK, the order types and vaults available, and the custody and leverage risks to understand before running one.
