@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hyperliquid Bot">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://hyperliquid-bot.github.io/#website", "url": "https://hyperliquid-bot.github.io/", "name": "Hyperliquid Bot — How Trading Bots Work on Hyperliquid"}, {"@type": "WebPage", "@id": "https://hyperliquid-bot.github.io/#webpage", "url": "https://hyperliquid-bot.github.io/", "name": "Hyperliquid Bot — How Trading Bots Work on Hyperliquid", "isPartOf": {"@id": "https://hyperliquid-bot.github.io/#website"}, "description": "A guide to the Hyperliquid Bot: how automated strategies connect via API or SDK, the order types and vaults available, and the custody and leverage risks to understand before running one.", "datePublished": "2026-10-10", "dateModified": "2026-10-10"}, {"@type": "SoftwareApplication", "name": "Hyperliquid Bot", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://hyperliquid-bot.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Trading bots"}, {"@type": "ListItem", "position": 3, "name": "Hyperliquid Bot"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a Hyperliquid Bot exactly?", "acceptedAnswer": {"@type": "Answer", "text": "It is a program that connects to Hyperliquid's API or SDK and places, adjusts, or cancels perpetual futures orders automatically according to pre-set rules, instead of a trader doing it by hand."}}, {"@type": "Question", "name": "Do I need to code to run a Hyperliquid Bot?", "acceptedAnswer": {"@type": "Answer", "text": "Most setups use Hyperliquid's official Python or TypeScript SDK, which assumes some programming ability, though some traders instead allocate to an existing Hyperliquid vault run by another strategy leader without writing any code themselves."}}, {"@type": "Question", "name": "Can a Hyperliquid Bot access my funds without permission?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hyperliquid is non-custodial, and every order must be signed with a wallet key, including a scoped API wallet that can be limited to trading only, without withdrawal rights."}}, {"@type": "Question", "name": "What's the difference between a private bot and a Hyperliquid vault?", "acceptedAnswer": {"@type": "Answer", "text": "A private bot trades from your own wallet under your own control. A vault pools capital from a leader and depositors into one shared on-chain account, with trades and performance visible on-chain to anyone."}}, {"@type": "Question", "name": "Does a Hyperliquid Bot guarantee better results than manual trading?", "acceptedAnswer": {"@type": "Answer", "text": "No. It executes a defined strategy more consistently and quickly than manual clicking, but it carries the same market, leverage, and strategy risk as any other approach to trading perpetuals."}}, {"@type": "Question", "name": "What order types matter most for automated strategies?", "acceptedAnswer": {"@type": "Answer", "text": "Limit orders for passive quoting, market orders for fast entries and exits, stop or trigger orders for risk control, and TWAP orders for splitting large trades over time are the core set most strategies combine."}}, {"@type": "Question", "name": "How does a Hyperliquid Bot handle a dropped connection?", "acceptedAnswer": {"@type": "Answer", "text": "A well-built bot resubscribes to its WebSocket feeds, re-checks open orders and positions against the exchange's current state, and only resumes trading once its local view matches what Hyperliquid actually shows."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://hyperliquid-bot.github.io/#website", "url": "https://hyperliquid-bot.github.io/", "name": "Hyperliquid Bot — How Trading Bots Work on Hyperliquid"}, {"@type": "WebPage", "@id": "https://hyperliquid-bot.github.io/#webpage", "url": "https://hyperliquid-bot.github.io/", "name": "Hyperliquid Bot — How Trading Bots Work on Hyperliquid", "isPartOf": {"@id": "https://hyperliquid-bot.github.io/#website"}, "description": "A guide to the Hyperliquid Bot: how automated strategies connect via API or SDK, the order types and vaults available, and the custody and leverage risks to understand before running one.", "datePublished": "2026-10-11", "dateModified": "2026-10-11"}, {"@type": "SoftwareApplication", "name": "Hyperliquid Bot", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://hyperliquid-bot.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Trading bots"}, {"@type": "ListItem", "position": 3, "name": "Hyperliquid Bot"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a Hyperliquid Bot exactly?", "acceptedAnswer": {"@type": "Answer", "text": "It is a program that connects to Hyperliquid's API or SDK and places, adjusts, or cancels perpetual futures orders automatically according to pre-set rules, instead of a trader doing it by hand."}}, {"@type": "Question", "name": "Do I need to code to run a Hyperliquid Bot?", "acceptedAnswer": {"@type": "Answer", "text": "Most setups use Hyperliquid's official Python or TypeScript SDK, which assumes some programming ability, though some traders instead allocate to an existing Hyperliquid vault run by another strategy leader without writing any code themselves."}}, {"@type": "Question", "name": "Can a Hyperliquid Bot access my funds without permission?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hyperliquid is non-custodial, and every order must be signed with a wallet key, including a scoped API wallet that can be limited to trading only, without withdrawal rights."}}, {"@type": "Question", "name": "What's the difference between a private bot and a Hyperliquid vault?", "acceptedAnswer": {"@type": "Answer", "text": "A private bot trades from your own wallet under your own control. A vault pools capital from a leader and depositors into one shared on-chain account, with trades and performance visible on-chain to anyone."}}, {"@type": "Question", "name": "Does a Hyperliquid Bot guarantee better results than manual trading?", "acceptedAnswer": {"@type": "Answer", "text": "No. It executes a defined strategy more consistently and quickly than manual clicking, but it carries the same market, leverage, and strategy risk as any other approach to trading perpetuals."}}, {"@type": "Question", "name": "What order types matter most for automated strategies?", "acceptedAnswer": {"@type": "Answer", "text": "Limit orders for passive quoting, market orders for fast entries and exits, stop or trigger orders for risk control, and TWAP orders for splitting large trades over time are the core set most strategies combine."}}, {"@type": "Question", "name": "How does a Hyperliquid Bot handle a dropped connection?", "acceptedAnswer": {"@type": "Answer", "text": "A well-built bot resubscribes to its WebSocket feeds, re-checks open orders and positions against the exchange's current state, and only resumes trading once its local view matches what Hyperliquid actually shows."}}]}]}</script>
 <style>
 :root{--bg:#FAFBFD;--surface:#FFFFFF;--text:#111725;--muted:#586072;--accent:#2563EB;--accent-ink:#FFFFFF;--radius:20px;--display:"Sora";--body:"IBM Plex Sans"}
 *,
@@ -328,13 +328,112 @@ ul.c04014d {
   font-size: 1.25em;
   line-height: 1;
 }
-.cba0ba5 {
+.cc72af4 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.82fr);
+  gap: clamp(2rem, 4vw, 3.75rem);
+  align-items: start;
+}
+.cee64e5 {
+  min-width: 0;
+}
+.cee64e5 .ce8aafe {
+  margin-bottom: 1.6rem;
+}
+.c030401 {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.15rem, 2vw, 1.65rem);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--surface));
+  border-radius: calc(var(--radius) * 1.4);
+  background: linear-gradient(158deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), var(--surface) 46%);
+  box-shadow: 0 22px 60px -26px color-mix(in srgb, var(--text) 24%, transparent), 0 3px 12px -6px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.c030401::before {
+  content: "";
+  position: absolute;
+  inset: -1px 14% auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 60%, transparent), transparent);
+}
+.c11ecb8 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-bottom: 1rem;
+}
+.c11ecb8 h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+.c3fba47 {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0.28rem 0.62rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.c56f9f2 .c26b336 {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.c56f9f2 .c26b336 th,
+.c56f9f2 .c26b336 td {
+  padding: 0.58rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  vertical-align: top;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.c56f9f2 .c26b336 tr:last-child th,
+.c56f9f2 .c26b336 tr:last-child td {
+  border-bottom: 0;
+}
+.c56f9f2 .c26b336 th {
+  width: 38%;
+  padding-right: 0.9rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.c56f9f2 .c26b336 td {
+  color: var(--text);
+  font-weight: 550;
+}
+.ca52e77 {
+  margin-top: 1.15rem;
+  width: 100%;
+}
+@media (max-width: 920px) {
+  .cc72af4 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+  .c030401 {
+    width: 100%;
+    max-width: 560px;
+  }
+}
+.summary-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
   margin-block: 1.5rem 4.5rem;
 }
-.c6336f8 {
+.summary-item {
   min-width: 0;
   padding: 1.2rem 1.35rem;
   border: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
@@ -342,7 +441,7 @@ ul.c04014d {
   background: var(--surface);
   box-shadow: 0 3px 12px color-mix(in srgb, var(--text) 3%, transparent);
 }
-.c6336f8 strong {
+.summary-item strong {
   display: block;
   margin-bottom: .2rem;
   color: var(--text);
@@ -352,7 +451,7 @@ ul.c04014d {
   line-height: 1.4;
   letter-spacing: -.02em;
 }
-.c6336f8 span {
+.summary-item span {
   display: block;
   color: var(--muted);
   font-size: .8rem;
@@ -432,7 +531,7 @@ ul.c04014d {
 .cfe2b5f {
   min-width: 0;
 }
-.c38821e {
+.facts-panel {
   padding: clamp(1.3rem, 3vw, 2.3rem);
   margin-bottom: 3.75rem;
   border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--surface));
@@ -442,7 +541,7 @@ ul.c04014d {
   box-shadow: 0 10px 35px color-mix(in srgb, var(--text) 5%, transparent);
   scroll-margin-top: 2rem;
 }
-.c4bf577 {
+.panel-heading {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
@@ -450,17 +549,17 @@ ul.c04014d {
   justify-content: space-between;
   margin-bottom: 1.4rem;
 }
-.c4bf577 h2 {
+.panel-heading h2 {
   margin: 0;
   font-size: clamp(1.45rem, 2.3vw, 1.85rem);
   letter-spacing: -.04em;
 }
-.c4bf577 p {
+.panel-heading p {
   margin: 0;
   color: var(--muted);
   font-size: .8rem;
 }
-.c11344e {
+.facts-content {
   min-width: 0;
   overflow-x: auto;
   scrollbar-width: thin;
@@ -906,10 +1005,10 @@ a.ca9db4b:hover {
     grid-template-columns: 190px minmax(0, 1fr);
     gap: 2.25rem;
   }
-  .cba0ba5 {
+  .summary-strip {
     gap: .75rem;
   }
-  .c6336f8 {
+  .summary-item {
     padding: 1rem;
   }
   .c08d1cf {
@@ -937,7 +1036,7 @@ a.ca9db4b:hover {
   .ce8aafe {
     font-size: 1.05rem;
   }
-  .cba0ba5 {
+  .summary-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-block: 1.2rem 2.5rem;
   }
@@ -969,7 +1068,7 @@ a.ca9db4b:hover {
   .cffaef5 {
     display: none;
   }
-  .c38821e {
+  .facts-panel {
     margin-bottom: 2.5rem;
   }
   .c767aea {
@@ -986,7 +1085,7 @@ a.ca9db4b:hover {
     padding-block: 2.5rem;
   }
   .c767aea,
-  .c38821e,
+  .facts-panel,
   .c09c7a9,
   .caaf0d6 {
     scroll-margin-top: 1rem;
@@ -1018,19 +1117,19 @@ a.ca9db4b:hover {
     width: 100%;
     justify-content: space-between;
   }
-  .c6336f8 {
+  .summary-item {
     padding: .9rem;
   }
-  .c6336f8 strong {
+  .summary-item strong {
     font-size: .9rem;
   }
-  .c6336f8 span {
+  .summary-item span {
     font-size: .75rem;
   }
   .c2c0240 {
     grid-template-columns: minmax(0, 1fr);
   }
-  .c38821e {
+  .facts-panel {
     padding: 1.15rem;
   }
   .c26b336 {
@@ -1106,15 +1205,15 @@ a.ca9db4b:hover {
   .c046420 h1 {
     font-size: 32pt;
   }
-  .cba0ba5 {
+  .summary-strip {
     margin-bottom: 2rem;
   }
   .cece79f,
   .cee7c1a {
     display: block;
   }
-  .c38821e,
-  .c6336f8,
+  .facts-panel,
+  .summary-item,
   .c4bf8ab {
     box-shadow: none;
   }
@@ -1147,24 +1246,34 @@ a.ca9db4b:hover {
 <section class="c046420" aria-labelledby="guide-title">
   <div class="c65224e c6e4176">
     <nav class="c4423a1" aria-label="Breadcrumb"><nav class="c04014d" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Trading bots</span> <span>/</span> <span>Hyperliquid Bot</span></nav></nav>
-    <div class="c8a811a"><span class="c4f7e75">A closer look</span><span class="cc5ffd9"></span></div>
-    <h1 id="guide-title">Hyperliquid <em>Bot</em>.</h1>
-    <p class="ce8aafe">A Hyperliquid Bot is a program that trades on Hyperliquid's on-chain perpetuals exchange automatically, sending orders through its public API or SDK instead of a trader clicking through a front end. Because Hyperliquid runs its own purpose-built Layer 1, every order, fill, and liquidation a bot triggers settles through an on-chain matching engine that anyone can inspect. This guide covers how such a bot connects and authenticates, the strategies and order types it can use, how vaults let a strategy run as a shared on-chain account, and the custody and leverage risks worth understanding before turning one loose on real capital.</p>
-    <a class="ca5f6d3" href="dashboard/">Open app <span class="c8ff555" aria-hidden="true">↗</span></a>
+    <div class="cc72af4">
+      <div class="cee64e5">
+        <div class="c8a811a"><span class="c4f7e75">A closer look</span><span class="cc5ffd9"></span></div>
+        <h1 id="guide-title">Hyperliquid <em>Bot</em>.</h1>
+        <p class="ce8aafe">A Hyperliquid Bot is a program that trades on Hyperliquid's on-chain perpetuals exchange automatically, sending orders through its public API or SDK instead of a trader clicking through a front end. Because Hyperliquid runs its own purpose-built Layer 1, every order, fill, and liquidation a bot triggers settles through an on-chain matching engine that anyone can inspect. This guide covers how such a bot connects and authenticates, the strategies and order types it can use, how vaults let a strategy run as a shared on-chain account, and the custody and leverage risks worth understanding before turning one loose on real capital.</p>
+        <a class="ca5f6d3" href="dashboard/">Open app <span class="c8ff555" aria-hidden="true">↗</span></a>
+      </div>
+      <aside class="c030401" id="key-facts" aria-labelledby="aside-title">
+        <div class="c11ecb8">
+          <h2 id="aside-title">At a glance</h2>
+          <span class="c3fba47">Trading bots</span>
+        </div>
+        <div class="c56f9f2"><table class="c26b336"><tbody><tr><th scope="row">Platform</th><td>Hyperliquid — on-chain perpetuals DEX with its own L1</td></tr>
+<tr><th scope="row">Primary interface</th><td>REST + WebSocket API, official Python and TypeScript SDKs</td></tr>
+<tr><th scope="row">Order types</th><td>Limit, market, stop/trigger, TWAP, scale orders</td></tr>
+<tr><th scope="row">Custody</th><td>Non-custodial — orders sign with the trader's own wallet key</td></tr>
+<tr><th scope="row">Vaults</th><td>On-chain strategy vaults with a leader/depositor profit split</td></tr>
+<tr><th scope="row">Core risk</th><td>Leverage amplifies gains and losses; automation doesn't remove market risk</td></tr></tbody></table></div>
+        <a class="ca5f6d3 ca52e77" href="dashboard/">Open app <span class="c8ff555" aria-hidden="true">↗</span></a>
+      </aside>
+    </div>
   </div>
 </section>
 <div class="c65224e">
-  <div class="cba0ba5" aria-label="Guide highlights">
-    <div class="c6336f8"><strong>Key facts</strong><span>The essentials at a glance</span></div>
-    <div class="c6336f8"><strong>In depth</strong><span>Explore the details</span></div>
-    <div class="c6336f8"><strong>Questions answered</strong><span>Find a little more clarity</span></div>
-    <div class="c6336f8"><strong>Sources</strong><span>Follow the references</span></div>
-  </div>
   <div class="cece79f">
     <nav class="c2c5a72" aria-labelledby="toc-title">
       <h2 class="c3c2db0" id="toc-title">On this page</h2>
       <ul class="c2c0240" id="toc-list">
-        <li><a class="c08d1cf" href="#key-facts">Key facts</a></li>
         <li><a class="c08d1cf" href="#guide-sections" data-sections-link>In depth</a></li>
         <li><a class="c08d1cf" href="#questions">Questions &amp; answers</a></li>
         <li><a class="c08d1cf" href="#sources">Sources</a></li>
@@ -1172,15 +1281,6 @@ a.ca9db4b:hover {
       <p class="cffaef5">Read from the beginning, or jump to the details you need.</p>
     </nav>
     <main class="cfe2b5f" id="guide-main" tabindex="-1">
-      <section class="c38821e" id="key-facts" aria-labelledby="facts-title">
-        <div class="c4bf577"><h2 id="facts-title">Key facts</h2><p>At a glance</p></div>
-        <div class="c11344e"><table class="c26b336"><tbody><tr><th scope="row">Platform</th><td>Hyperliquid — on-chain perpetuals DEX with its own L1</td></tr>
-<tr><th scope="row">Primary interface</th><td>REST + WebSocket API, official Python and TypeScript SDKs</td></tr>
-<tr><th scope="row">Order types</th><td>Limit, market, stop/trigger, TWAP, scale orders</td></tr>
-<tr><th scope="row">Custody</th><td>Non-custodial — orders sign with the trader's own wallet key</td></tr>
-<tr><th scope="row">Vaults</th><td>On-chain strategy vaults with a leader/depositor profit split</td></tr>
-<tr><th scope="row">Core risk</th><td>Leverage amplifies gains and losses; automation doesn't remove market risk</td></tr></tbody></table></div>
-      </section>
       <div class="c829687" id="guide-sections"><section class="c767aea"><h2 class="cd54e32">What Is a Hyperliquid Bot?</h2><div class="cb1da78"><strong>A Hyperliquid Bot is software that places, adjusts, and cancels orders on the Hyperliquid perpetuals exchange automatically, using its public API or SDK instead of a trader clicking through the interface.</strong> Hyperliquid is a decentralized exchange built on its own purpose-built Layer 1, so every order a bot submits is ultimately settled by an on-chain matching engine rather than a centralized order book. A bot connects over REST or WebSocket, authenticates with a wallet-derived key, and then streams prices, order-book depth, and account state to decide what to send next. Because the exchange exposes the same endpoints a human trader's front end uses, it can do anything a manual trader can do — open and close positions, manage margin, and react to funding-rate changes — just faster and on a fixed set of rules. The field this fits into is broadly called <a href="https://en.wikipedia.org/wiki/Algorithmic_trading" rel="nofollow noopener" target="_blank">algorithmic trading</a>: pre-defined logic replacing discretionary, order-by-order decisions.</div></section>
 <section class="c767aea"><h2 class="cd54e32">How a Hyperliquid Bot Connects to the Exchange</h2><div class="cb1da78">Most automated trading projects on Hyperliquid start from the exchange's own API reference, which documents the REST endpoints for placing and canceling orders and the WebSocket channels for live order-book and trade data. The <a href="https://hyperliquid.gitbook.io/hyperliquid-docs" rel="nofollow noopener" target="_blank">Hyperliquid documentation</a> also publishes official Python and TypeScript SDKs, which wrap the signing and request formatting so a developer can focus on strategy logic rather than low-level message construction.<h3>REST vs WebSocket</h3>REST calls place, modify, and cancel orders and query account state on demand. The WebSocket feed is what a running bot actually watches — it streams order-book updates, trade prints, and fills in real time, which is what makes a sub-second reaction to price moves possible at all.<h3>Authentication and signing</h3>Every order an automated trader sends must be signed with the trader's own wallet key, following the same signing scheme used by any Ethereum-style account, as described in general terms on <a href="https://ethereum.org/en/developers/docs/" rel="nofollow noopener" target="_blank">ethereum.org</a>. The exchange never asks for a password; it verifies a cryptographic signature attached to each request.<h3>Rate limits and reconnection</h3>Like any trading API, including centralized venues documented at <a href="https://binance-docs.github.io/apidocs/spot/en/" rel="nofollow noopener" target="_blank">Binance's API docs</a>, Hyperliquid enforces request and message-rate limits. A bot has to handle dropped WebSocket connections gracefully — resubscribing to feeds and reconciling its local order state against the exchange's rather than assuming nothing changed while it was offline.</div></section>
 <section class="c767aea"><h2 class="cd54e32">Strategies a Hyperliquid Bot Can Run</h2><div class="cb1da78">The strategies these bots run are the same families used across other venues; what differs is that positions, margin, and funding all live on-chain and are visible to anyone. Common approaches include:<ul><li>Market making: posting both bid and ask quotes around the mid-price to earn the spread while continuously adjusting as the book moves.</li><li>Trend or momentum following: entering positions in the direction of a recent price move and exiting once the signal reverses.</li><li>Funding-rate arbitrage: taking offsetting positions to collect the periodic funding payment exchanged between long and short perpetual holders.</li><li>Grid trading: placing a ladder of buy and sell orders at fixed price intervals around the current market price.</li><li>Cross-venue arbitrage: comparing Hyperliquid's price against another exchange or an aggregated reference like <a href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a> and trading the gap.</li></ul></div></section>
@@ -1213,7 +1313,7 @@ a.ca9db4b:hover {
 <footer class="c6d97e6">
   <div class="c65224e c99c22c">
     <span class="cff9da6">The guide</span>
-    <p class="cd23c77">Last updated <span>Updated Oct 10, 2026</span></p>
+    <p class="cd23c77">Last updated <span>Updated Oct 11, 2026</span></p>
   </div>
 </footer>
 <script>
